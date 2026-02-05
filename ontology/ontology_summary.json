@@ -1,0 +1,355 @@
+{
+  "classes": [
+    "Equipment",
+    "EventInstance",
+    "EventType",
+    "FlowPath",
+    "Gauge",
+    "Location",
+    "Observation",
+    "OilWell",
+    "Platform",
+    "PressureSensor",
+    "ProcessVariable",
+    "ProductionLine",
+    "ProductionTubing",
+    "Reservoir",
+    "Sensor",
+    "State",
+    "SubseaChristmasTree",
+    "TemperatureSensor",
+    "Transducer",
+    "Umbilical",
+    "Unit",
+    "Valve",
+    "WellComponent"
+  ],
+  "object_properties": [
+    "affectsEquipment",
+    "affectsVariable",
+    "connectedTo",
+    "downstreamOf",
+    "flowFrom",
+    "flowTo",
+    "generatedBy",
+    "hasComponent",
+    "hasEquipment",
+    "hasEventType",
+    "hasFlowPath",
+    "hasObservation",
+    "hasSensor",
+    "hasState",
+    "hasUnit",
+    "locatedAt",
+    "measures",
+    "mountedOn",
+    "observedAt",
+    "partOf",
+    "relatedToEquipment",
+    "upstreamOf"
+  ],
+  "datatype_properties": [
+    "confidence",
+    "hasTimestamp",
+    "hasValue",
+    "tagName"
+  ],
+  "instances": [
+    {
+      "id": "AbruptIncreaseBSW",
+      "class": "EventType"
+    },
+    {
+      "id": "FlowInstability",
+      "class": "EventType"
+    },
+    {
+      "id": "HydrateProductionLine",
+      "class": "EventType"
+    },
+    {
+      "id": "NormalOperation",
+      "class": "EventType"
+    },
+    {
+      "id": "QuickRestrictionPCK",
+      "class": "EventType"
+    },
+    {
+      "id": "RapidProductivityLoss",
+      "class": "EventType"
+    },
+    {
+      "id": "ScalingPCK",
+      "class": "EventType"
+    },
+    {
+      "id": "SevereSlugging",
+      "class": "EventType"
+    },
+    {
+      "id": "SpuriousClosureDHSV",
+      "class": "EventType"
+    },
+    {
+      "id": "FlowPathA",
+      "class": "FlowPath"
+    },
+    {
+      "id": "PDG",
+      "class": "Gauge"
+    },
+    {
+      "id": "TPT",
+      "class": "Gauge"
+    },
+    {
+      "id": "Downhole",
+      "class": "Location"
+    },
+    {
+      "id": "SubseaTree",
+      "class": "Location"
+    },
+    {
+      "id": "Surface",
+      "class": "Location"
+    },
+    {
+      "id": "WellA",
+      "class": "OilWell"
+    },
+    {
+      "id": "PlatformA",
+      "class": "Platform"
+    },
+    {
+      "id": "PCK_UpstreamPressureSensor",
+      "class": "PressureSensor"
+    },
+    {
+      "id": "PDG_PressureSensor",
+      "class": "PressureSensor"
+    },
+    {
+      "id": "TPT_PressureSensor",
+      "class": "PressureSensor"
+    },
+    {
+      "id": "AnnularPressure",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Flow_QBS",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Flow_QGL",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Opening_CKGL",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Opening_CKP",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_JUS_BS",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_JUS_CKGL",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_JUS_CKP",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_MON_CKGL",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_MON_SDV_P",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_PCK_Upstream",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_PDG",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_PT_P",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_TPT",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_DHSV",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_M1",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_M2",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_PXO",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_SDV_GL",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_SDV_P",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_W1",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_W2",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "State_XO",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_MON_CKP",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_PCK_Downstream",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_PDG",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_TPT",
+      "class": "ProcessVariable"
+    },
+    {
+      "id": "ProductionLineA",
+      "class": "ProductionLine"
+    },
+    {
+      "id": "ProductionTubingA",
+      "class": "ProductionTubing"
+    },
+    {
+      "id": "ReservoirA",
+      "class": "Reservoir"
+    },
+    {
+      "id": "FaultySteady",
+      "class": "State"
+    },
+    {
+      "id": "FaultyTransient",
+      "class": "State"
+    },
+    {
+      "id": "NormalState",
+      "class": "State"
+    },
+    {
+      "id": "SubseaTreeA",
+      "class": "SubseaChristmasTree"
+    },
+    {
+      "id": "PCK_DownstreamTemperatureSensor",
+      "class": "TemperatureSensor"
+    },
+    {
+      "id": "TPT_TemperatureSensor",
+      "class": "TemperatureSensor"
+    },
+    {
+      "id": "UmbilicalA",
+      "class": "Umbilical"
+    },
+    {
+      "id": "Celsius",
+      "class": "Unit"
+    },
+    {
+      "id": "Pascal",
+      "class": "Unit"
+    },
+    {
+      "id": "Percent",
+      "class": "Unit"
+    },
+    {
+      "id": "StdCubicMeterPerSecond",
+      "class": "Unit"
+    },
+    {
+      "id": "Unitless",
+      "class": "Unit"
+    },
+    {
+      "id": "CKGL",
+      "class": "Valve"
+    },
+    {
+      "id": "CKP",
+      "class": "Valve"
+    },
+    {
+      "id": "DHSV",
+      "class": "Valve"
+    },
+    {
+      "id": "M1",
+      "class": "Valve"
+    },
+    {
+      "id": "M2",
+      "class": "Valve"
+    },
+    {
+      "id": "PCK",
+      "class": "Valve"
+    },
+    {
+      "id": "PXO",
+      "class": "Valve"
+    },
+    {
+      "id": "SDV_GL",
+      "class": "Valve"
+    },
+    {
+      "id": "SDV_P",
+      "class": "Valve"
+    },
+    {
+      "id": "W1",
+      "class": "Valve"
+    },
+    {
+      "id": "W2",
+      "class": "Valve"
+    },
+    {
+      "id": "XO",
+      "class": "Valve"
+    }
+  ]
+}

@@ -1,0 +1,1802 @@
+@prefix dt: <http://example.org/oilwell/dt#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dt:Event_0 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_1 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_2 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_3 a dt:EventInstance ;
+  dt:hasEventType dt:AbruptIncreaseBSW ;
+  dt:hasState dt:FaultyTransient ;
+  dt:hasValue 0.55 .
+
+dt:Event_4 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_5 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_6 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_7 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_8 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_9 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_10 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_11 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_12 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_13 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_14 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_15 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_16 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_17 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_18 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_19 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_20 a dt:EventInstance ;
+  dt:hasEventType dt:AbruptIncreaseBSW ;
+  dt:hasState dt:FaultyTransient ;
+  dt:hasValue 0.55 .
+
+dt:Event_21 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_22 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_23 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_24 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_25 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_26 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_27 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_28 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_29 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_30 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_31 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_32 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_33 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_34 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_35 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_36 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_37 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_38 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_39 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_40 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_41 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_42 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_43 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_44 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_45 a dt:EventInstance ;
+  dt:hasEventType dt:AbruptIncreaseBSW ;
+  dt:hasState dt:FaultyTransient ;
+  dt:hasValue 0.55 .
+
+dt:Event_46 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_47 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_48 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_49 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_50 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_51 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_52 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_53 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_54 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_55 a dt:EventInstance ;
+  dt:hasEventType dt:SpuriousClosureDHSV ;
+  dt:hasState dt:FaultyTransient ;
+  dt:hasValue 0.60 .
+
+dt:Event_56 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_57 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_58 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_59 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_60 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_61 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_62 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_63 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_64 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_65 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_66 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_67 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_68 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_69 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_70 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_71 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_72 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_73 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_74 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_75 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_76 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_77 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_78 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_79 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_80 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_81 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_82 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_83 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_84 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_85 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_86 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_87 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_88 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_89 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_90 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_91 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_92 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_93 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_94 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_95 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_96 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_97 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_98 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_99 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_100 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_101 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_102 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_103 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_104 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_105 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_106 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_107 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_108 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_109 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_110 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_111 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_112 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_113 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_114 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_115 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_116 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_117 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_118 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_119 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_120 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_121 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_122 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_123 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_124 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_125 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_126 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_127 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_128 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_129 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_130 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_131 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_132 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_133 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_134 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_135 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_136 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_137 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_138 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_139 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_140 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_141 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_142 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_143 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_144 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_145 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_146 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_147 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_148 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_149 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_150 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_151 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_152 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_153 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_154 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_155 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_156 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_157 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_158 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_159 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_160 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_161 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_162 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_163 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_164 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_165 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_166 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_167 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_168 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_169 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_170 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_171 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_172 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_173 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_174 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_175 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_176 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_177 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_178 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_179 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_180 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_181 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_182 a dt:EventInstance ;
+  dt:hasEventType dt:AbruptIncreaseBSW ;
+  dt:hasState dt:FaultyTransient ;
+  dt:hasValue 0.55 .
+
+dt:Event_183 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_184 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_185 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_186 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_187 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_188 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_189 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_190 a dt:EventInstance ;
+  dt:hasEventType dt:AbruptIncreaseBSW ;
+  dt:hasState dt:FaultyTransient ;
+  dt:hasValue 0.55 .
+
+dt:Event_191 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_192 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_193 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_194 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_195 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_196 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_197 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_198 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_199 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_200 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_201 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_202 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_203 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_204 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_205 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_206 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_207 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_208 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_209 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_210 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_211 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_212 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_213 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_214 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_215 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_216 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_217 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_218 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_219 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_220 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_221 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_222 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_223 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_224 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_225 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_226 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_227 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_228 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_229 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_230 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_231 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_232 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_233 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_234 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_235 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_236 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_237 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_238 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_239 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_240 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_241 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_242 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_243 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_244 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_245 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_246 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_247 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_248 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_249 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_250 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_251 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_252 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_253 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_254 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_255 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_256 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_257 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_258 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_259 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_260 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_261 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_262 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_263 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_264 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_265 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_266 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_267 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_268 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_269 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_270 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_271 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_272 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_273 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_274 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_275 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_276 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_277 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_278 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_279 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_280 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_281 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_282 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_283 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_284 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_285 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_286 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_287 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_288 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_289 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_290 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_291 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_292 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_293 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_294 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_295 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_296 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_297 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_298 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_299 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_300 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_301 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_302 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_303 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_304 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_305 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_306 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_307 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_308 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_309 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_310 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_311 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_312 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_313 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_314 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_315 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_316 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_317 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_318 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_319 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_320 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_321 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_322 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_323 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_324 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_325 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_326 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_327 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_328 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_329 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_330 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_331 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_332 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_333 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_334 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_335 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_336 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_337 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_338 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_339 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_340 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_341 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_342 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_343 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_344 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_345 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_346 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_347 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_348 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_349 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_350 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_351 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_352 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_353 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_354 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_355 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_356 a dt:EventInstance ;
+  dt:hasEventType dt:AbruptIncreaseBSW ;
+  dt:hasState dt:FaultyTransient ;
+  dt:hasValue 0.55 .
+
+dt:Event_357 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_358 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .
+
+dt:Event_359 a dt:EventInstance ;
+  dt:hasEventType dt:NormalOperation ;
+  dt:hasState dt:NormalState ;
+  dt:hasValue 0.40 .

@@ -1,0 +1,451 @@
+{
+  "nodes": [
+    {
+      "id": "Pascal",
+      "type": "Unit"
+    },
+    {
+      "id": "Celsius",
+      "type": "Unit"
+    },
+    {
+      "id": "StdCubicMeterPerSecond",
+      "type": "Unit"
+    },
+    {
+      "id": "Percent",
+      "type": "Unit"
+    },
+    {
+      "id": "Unitless",
+      "type": "Unit"
+    },
+    {
+      "id": "Downhole",
+      "type": "Location"
+    },
+    {
+      "id": "SubseaTree",
+      "type": "Location"
+    },
+    {
+      "id": "Surface",
+      "type": "Location"
+    },
+    {
+      "id": "WellA",
+      "type": "OilWell"
+    },
+    {
+      "id": "PDG",
+      "type": "Gauge"
+    },
+    {
+      "id": "TPT",
+      "type": "Gauge"
+    },
+    {
+      "id": "DHSV",
+      "type": "Valve"
+    },
+    {
+      "id": "PCK",
+      "type": "Valve"
+    },
+    {
+      "id": "ReservoirA",
+      "type": "Reservoir"
+    },
+    {
+      "id": "ProductionTubingA",
+      "type": "ProductionTubing"
+    },
+    {
+      "id": "ProductionLineA",
+      "type": "ProductionLine"
+    },
+    {
+      "id": "PlatformA",
+      "type": "Platform"
+    },
+    {
+      "id": "SubseaTreeA",
+      "type": "SubseaChristmasTree"
+    },
+    {
+      "id": "UmbilicalA",
+      "type": "Umbilical"
+    },
+    {
+      "id": "FlowPathA",
+      "type": "Entity"
+    },
+    {
+      "id": "CKP",
+      "type": "Valve"
+    },
+    {
+      "id": "CKGL",
+      "type": "Valve"
+    },
+    {
+      "id": "SDV_P",
+      "type": "Valve"
+    },
+    {
+      "id": "SDV_GL",
+      "type": "Valve"
+    },
+    {
+      "id": "W1",
+      "type": "Valve"
+    },
+    {
+      "id": "W2",
+      "type": "Valve"
+    },
+    {
+      "id": "PXO",
+      "type": "Valve"
+    },
+    {
+      "id": "XO",
+      "type": "Valve"
+    },
+    {
+      "id": "M1",
+      "type": "Valve"
+    },
+    {
+      "id": "M2",
+      "type": "Valve"
+    },
+    {
+      "id": "Pressure_PDG",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_TPT",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_TPT",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_PCK_Upstream",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_PCK_Downstream",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "AnnularPressure",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_JUS_BS",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_JUS_CKGL",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_JUS_CKP",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_MON_CKGL",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_MON_SDV_P",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Pressure_PT_P",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_MON_CKP",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Temperature_PDG",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Flow_QBS",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Flow_QGL",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Opening_CKGL",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "Opening_CKP",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_DHSV",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_M1",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_M2",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_PXO",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_SDV_GL",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_SDV_P",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_W1",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_W2",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "State_XO",
+      "type": "ProcessVariable"
+    },
+    {
+      "id": "PDG_PressureSensor",
+      "type": "PressureSensor"
+    },
+    {
+      "id": "TPT_PressureSensor",
+      "type": "PressureSensor"
+    },
+    {
+      "id": "TPT_TemperatureSensor",
+      "type": "TemperatureSensor"
+    },
+    {
+      "id": "PCK_UpstreamPressureSensor",
+      "type": "PressureSensor"
+    },
+    {
+      "id": "PCK_DownstreamTemperatureSensor",
+      "type": "TemperatureSensor"
+    },
+    {
+      "id": "NormalOperation",
+      "type": "EventType"
+    },
+    {
+      "id": "AbruptIncreaseBSW",
+      "type": "EventType"
+    },
+    {
+      "id": "SpuriousClosureDHSV",
+      "type": "EventType"
+    },
+    {
+      "id": "SevereSlugging",
+      "type": "EventType"
+    },
+    {
+      "id": "FlowInstability",
+      "type": "EventType"
+    },
+    {
+      "id": "RapidProductivityLoss",
+      "type": "EventType"
+    },
+    {
+      "id": "QuickRestrictionPCK",
+      "type": "EventType"
+    },
+    {
+      "id": "ScalingPCK",
+      "type": "EventType"
+    },
+    {
+      "id": "HydrateProductionLine",
+      "type": "EventType"
+    },
+    {
+      "id": "NormalState",
+      "type": "State"
+    },
+    {
+      "id": "FaultyTransient",
+      "type": "State"
+    },
+    {
+      "id": "FaultySteady",
+      "type": "State"
+    }
+  ],
+  "edges": [
+    {
+      "source": "WellA",
+      "target": "PDG",
+      "label": "hasEquipment"
+    },
+    {
+      "source": "PDG",
+      "target": "TPT",
+      "label": "upstreamOf"
+    },
+    {
+      "source": "TPT",
+      "target": "PCK",
+      "label": "upstreamOf"
+    },
+    {
+      "source": "WellA",
+      "target": "ReservoirA",
+      "label": "hasComponent"
+    },
+    {
+      "source": "ReservoirA",
+      "target": "WellA",
+      "label": "partOf"
+    },
+    {
+      "source": "ProductionTubingA",
+      "target": "WellA",
+      "label": "partOf"
+    },
+    {
+      "source": "ProductionLineA",
+      "target": "WellA",
+      "label": "partOf"
+    },
+    {
+      "source": "PlatformA",
+      "target": "WellA",
+      "label": "partOf"
+    },
+    {
+      "source": "SubseaTreeA",
+      "target": "WellA",
+      "label": "partOf"
+    },
+    {
+      "source": "UmbilicalA",
+      "target": "WellA",
+      "label": "partOf"
+    },
+    {
+      "source": "ReservoirA",
+      "target": "ProductionTubingA",
+      "label": "connectedTo"
+    },
+    {
+      "source": "ProductionTubingA",
+      "target": "SubseaTreeA",
+      "label": "connectedTo"
+    },
+    {
+      "source": "SubseaTreeA",
+      "target": "ProductionLineA",
+      "label": "connectedTo"
+    },
+    {
+      "source": "ProductionLineA",
+      "target": "PlatformA",
+      "label": "connectedTo"
+    },
+    {
+      "source": "UmbilicalA",
+      "target": "SubseaTreeA",
+      "label": "connectedTo"
+    },
+    {
+      "source": "WellA",
+      "target": "FlowPathA",
+      "label": "hasFlowPath"
+    },
+    {
+      "source": "PDG",
+      "target": "ProductionTubingA",
+      "label": "mountedOn"
+    },
+    {
+      "source": "TPT",
+      "target": "SubseaTreeA",
+      "label": "mountedOn"
+    },
+    {
+      "source": "DHSV",
+      "target": "ProductionTubingA",
+      "label": "mountedOn"
+    },
+    {
+      "source": "PCK",
+      "target": "PlatformA",
+      "label": "mountedOn"
+    },
+    {
+      "source": "WellA",
+      "target": "CKP",
+      "label": "hasEquipment"
+    },
+    {
+      "source": "SpuriousClosureDHSV",
+      "target": "DHSV",
+      "label": "affectsEquipment"
+    },
+    {
+      "source": "QuickRestrictionPCK",
+      "target": "PCK",
+      "label": "affectsEquipment"
+    },
+    {
+      "source": "ScalingPCK",
+      "target": "PCK",
+      "label": "affectsEquipment"
+    }
+  ],
+  "tag_map": {
+    "P-PDG": "Pressure_PDG",
+    "P-TPT": "Pressure_TPT",
+    "T-TPT": "Temperature_TPT",
+    "P-MON-CKP": "Pressure_PCK_Upstream",
+    "T-JUS-CKP": "Temperature_PCK_Downstream",
+    "P-ANULAR": "AnnularPressure",
+    "P-JUS-BS": "Pressure_JUS_BS",
+    "P-JUS-CKGL": "Pressure_JUS_CKGL",
+    "P-JUS-CKP": "Pressure_JUS_CKP",
+    "P-MON-CKGL": "Pressure_MON_CKGL",
+    "P-MON-SDV-P": "Pressure_MON_SDV_P",
+    "PT-P": "Pressure_PT_P",
+    "T-MON-CKP": "Temperature_MON_CKP",
+    "T-PDG": "Temperature_PDG",
+    "QBS": "Flow_QBS",
+    "QGL": "Flow_QGL",
+    "ABER-CKGL": "Opening_CKGL",
+    "ABER-CKP": "Opening_CKP",
+    "ESTADO-DHSV": "State_DHSV",
+    "ESTADO-M1": "State_M1",
+    "ESTADO-M2": "State_M2",
+    "ESTADO-PXO": "State_PXO",
+    "ESTADO-SDV-GL": "State_SDV_GL",
+    "ESTADO-SDV-P": "State_SDV_P",
+    "ESTADO-W1": "State_W1",
+    "ESTADO-W2": "State_W2",
+    "ESTADO-XO": "State_XO"
+  }
+}

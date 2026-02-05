@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Well Ontology Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="glow"></div>
+  <header>
+    <h1>Ontology Dashboard</h1>
+    <p>
+      A visual inventory of the oil-well digital twin ontology, including classes,
+      properties, instances, and a live relationship graph derived from
+      <code>ontology/oil_well_dt.ttl</code>.
+    </p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="kpi-grid">
+        <div class="kpi"><h3>Classes</h3><span id="kpi-classes">0</span></div>
+        <div class="kpi"><h3>Object Properties</h3><span id="kpi-obj">0</span></div>
+        <div class="kpi"><h3>Datatype Properties</h3><span id="kpi-data">0</span></div>
+        <div class="kpi"><h3>Instances</h3><span id="kpi-instances">0</span></div>
+      </div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Classes</h2>
+        <div id="class-list" class="list"></div>
+      </div>
+      <div>
+        <h2>Properties</h2>
+        <div id="prop-list" class="list"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="graph-head">
+        <h2>Ontology Graph</h2>
+        <div class="graph-controls">
+          <label>Depth
+            <input id="graph-depth" type="range" min="1" max="4" value="2" />
+          </label>
+          <span id="graph-count" class="badge">0 nodes</span>
+        </div>
+      </div>
+      <div id="graph"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Test Input + Explanation</h2>
+      <div class="input-grid">
+        <div>
+          <h3>Instance Features JSON</h3>
+          <p class="muted">Paste the instance-level feature JSON (e.g., from <code>scripts/extract_instance_features.py</code>).</p>
+          <div class="input-actions">
+            <label class="muted">Load real file</label>
+            <select id="file-select"></select>
+            <button id="btn-load-file">Load</button>
+          </div>
+          <textarea id="input-json" rows="12" placeholder='{"P-PDG_mean": 123.4, "P-PDG_std": 5.6, ...}'></textarea>
+          <div class="input-actions">
+            <button id="btn-eval">Evaluate</button>
+            <span id="input-status" class="badge">waiting</span>
+          </div>
+        </div>
+        <div>
+          <h3>Model Output</h3>
+          <div class="output-box" id="model-output">No input evaluated.</div>
+          <h3>Top Contributors</h3>
+          <div id="contrib-list" class="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Chatbot (Ontology-Aware)</h2>
+      <div class="chat">
+        <div id="chat-log" class="chat-log"></div>
+        <div class="chat-input">
+          <input id="chat-question" type="text" placeholder="Ask why the model flagged this instance..." />
+          <button id="chat-send">Ask</button>
+        </div>
+        <p class="muted">This chatbot uses the ontology graph + your evaluated input to explain likely causes.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Isolation Forest Results</h2>
+      <div class="input-actions">
+        <button id="btn-retrain">Re-train Model</button>
+        <span id="retrain-status" class="badge">idle</span>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><h3>Precision</h3><span id="m-precision">0</span></div>
+        <div class="kpi"><h3>Recall</h3><span id="m-recall">0</span></div>
+        <div class="kpi"><h3>F1 Score</h3><span id="m-f1">0</span></div>
+        <div class="kpi"><h3>ROC AUC</h3><span id="m-roc">0</span></div>
+        <div class="kpi"><h3>PR AUC</h3><span id="m-pr">0</span></div>
+        <div class="kpi"><h3>Contamination</h3><span id="m-contam">0</span></div>
+      </div>
+      <div class="charts">
+        <div class="chart-card">
+          <h3>Score Distribution</h3>
+          <canvas id="chart-hist"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Timeline (First 200 Instances)</h3>
+          <canvas id="chart-timeline"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Real Data Labels</h2>
+      <div class="charts">
+        <div class="chart-card">
+          <h3>Instance Count by Class</h3>
+          <canvas id="chart-class-counts"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>State Distribution</h3>
+          <canvas id="chart-state-counts"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Instances by Class</h2>
+      <div id="instance-map" class="map"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Instance Browser</h2>
+      <div class="search">
+        <input id="search-input" type="text" placeholder="Search by instance or class" />
+        <span id="instance-count" class="badge">0 shown</span>
+      </div>
+      <table class="table">
+        <thead>
+          <tr><th>Instance</th><th>Class</th></tr>
+        </thead>
+        <tbody id="instance-table"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    Source: <code>ontology/oil_well_dt.ttl</code> summarized into JSON at build time.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+@prefix dt: <http://example.org/oilwell/dt#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Core classes
+
+dt:OilWell a owl:Class .
+dt:Equipment a owl:Class .
+dt:WellComponent a owl:Class .
+dt:Sensor a owl:Class ; rdfs:subClassOf dt:Equipment .
+dt:PressureSensor a owl:Class ; rdfs:subClassOf dt:Sensor .
+dt:TemperatureSensor a owl:Class ; rdfs:subClassOf dt:Sensor .
+dt:Valve a owl:Class ; rdfs:subClassOf dt:Equipment .
+dt:Gauge a owl:Class ; rdfs:subClassOf dt:Equipment .
+dt:Transducer a owl:Class ; rdfs:subClassOf dt:Equipment .
+
+dt:Reservoir a owl:Class ; rdfs:subClassOf dt:WellComponent .
+dt:ProductionTubing a owl:Class ; rdfs:subClassOf dt:WellComponent .
+dt:ProductionLine a owl:Class ; rdfs:subClassOf dt:WellComponent .
+dt:Platform a owl:Class ; rdfs:subClassOf dt:WellComponent .
+dt:SubseaChristmasTree a owl:Class ; rdfs:subClassOf dt:WellComponent .
+dt:Umbilical a owl:Class ; rdfs:subClassOf dt:WellComponent .
+dt:FlowPath a owl:Class .
+
+dt:ProcessVariable a owl:Class .
+dt:Observation a owl:Class .
+dt:EventType a owl:Class .
+dt:EventInstance a owl:Class .
+dt:State a owl:Class .
+
+dt:Unit a owl:Class .
+dt:Location a owl:Class .
+
+# Properties
+
+dt:hasEquipment a owl:ObjectProperty ; rdfs:domain dt:OilWell ; rdfs:range dt:Equipment .
+dt:hasComponent a owl:ObjectProperty ; rdfs:domain dt:OilWell ; rdfs:range dt:WellComponent .
+dt:hasSensor a owl:ObjectProperty ; rdfs:domain dt:Equipment ; rdfs:range dt:Sensor .
+dt:measures a owl:ObjectProperty ; rdfs:domain dt:Sensor ; rdfs:range dt:ProcessVariable .
+dt:hasObservation a owl:ObjectProperty ; rdfs:domain dt:ProcessVariable ; rdfs:range dt:Observation .
+dt:observedAt a owl:ObjectProperty ; rdfs:domain dt:Observation ; rdfs:range dt:WellComponent .
+dt:generatedBy a owl:ObjectProperty ; rdfs:domain dt:Observation ; rdfs:range dt:Sensor .
+
+dt:hasValue a owl:DatatypeProperty ; rdfs:domain dt:Observation ; rdfs:range xsd:double .
+dt:hasTimestamp a owl:DatatypeProperty ; rdfs:domain dt:Observation ; rdfs:range xsd:dateTime .
+dt:confidence a owl:DatatypeProperty ; rdfs:domain dt:EventInstance ; rdfs:range xsd:double .
+dt:hasUnit a owl:ObjectProperty ; rdfs:domain dt:ProcessVariable ; rdfs:range dt:Unit .
+dt:tagName a owl:DatatypeProperty ; rdfs:domain dt:ProcessVariable ; rdfs:range xsd:string .
+
+dt:hasEventType a owl:ObjectProperty ; rdfs:domain dt:EventInstance ; rdfs:range dt:EventType .
+dt:hasState a owl:ObjectProperty ; rdfs:domain dt:EventInstance ; rdfs:range dt:State .
+
+dt:affectsVariable a owl:ObjectProperty ; rdfs:domain dt:EventType ; rdfs:range dt:ProcessVariable .
+dt:affectsEquipment a owl:ObjectProperty ; rdfs:domain dt:EventType ; rdfs:range dt:Equipment .
+dt:relatedToEquipment a owl:ObjectProperty ; rdfs:domain dt:ProcessVariable ; rdfs:range dt:Equipment .
+
+dt:upstreamOf a owl:ObjectProperty ; rdfs:domain dt:Equipment ; rdfs:range dt:Equipment .
+dt:downstreamOf a owl:ObjectProperty ; rdfs:domain dt:Equipment ; rdfs:range dt:Equipment .
+dt:connectedTo a owl:ObjectProperty ; rdfs:domain dt:WellComponent ; rdfs:range dt:WellComponent .
+dt:partOf a owl:ObjectProperty ; rdfs:domain dt:WellComponent ; rdfs:range dt:OilWell .
+dt:hasFlowPath a owl:ObjectProperty ; rdfs:domain dt:OilWell ; rdfs:range dt:FlowPath .
+dt:flowFrom a owl:ObjectProperty ; rdfs:domain dt:FlowPath ; rdfs:range dt:WellComponent .
+dt:flowTo a owl:ObjectProperty ; rdfs:domain dt:FlowPath ; rdfs:range dt:WellComponent .
+
+dt:locatedAt a owl:ObjectProperty ; rdfs:domain dt:Equipment ; rdfs:range dt:Location .
+dt:mountedOn a owl:ObjectProperty ; rdfs:domain dt:Equipment ; rdfs:range dt:WellComponent .
+
+# Units
+
+dt:Pascal a dt:Unit ; rdfs:label "Pa" .
+dt:Celsius a dt:Unit ; rdfs:label "C" .
+dt:StdCubicMeterPerSecond a dt:Unit ; rdfs:label "sm3/s" .
+dt:Percent a dt:Unit ; rdfs:label "%" .
+dt:Unitless a dt:Unit ; rdfs:label "unitless" .
+
+# Locations
+
+dt:Downhole a dt:Location .
+dt:SubseaTree a dt:Location .
+dt:Surface a dt:Location .
+
+# Equipment instances
+
+dt:WellA a dt:OilWell .
+
+dt:PDG a dt:Gauge ; dt:locatedAt dt:Downhole .
+dt:TPT a dt:Gauge ; dt:locatedAt dt:SubseaTree .
+
+dt:DHSV a dt:Valve ; dt:locatedAt dt:Downhole .
+dt:PCK a dt:Valve ; dt:locatedAt dt:Surface .
+
+dt:WellA dt:hasEquipment dt:PDG, dt:TPT, dt:DHSV, dt:PCK .
+
+dt:PDG dt:upstreamOf dt:TPT .
+dt:TPT dt:upstreamOf dt:PCK .
+
+# Well components (from PDF description of offshore naturally flowing wells)
+
+dt:ReservoirA a dt:Reservoir .
+dt:ProductionTubingA a dt:ProductionTubing .
+dt:ProductionLineA a dt:ProductionLine .
+dt:PlatformA a dt:Platform .
+dt:SubseaTreeA a dt:SubseaChristmasTree .
+dt:UmbilicalA a dt:Umbilical .
+
+dt:WellA dt:hasComponent dt:ReservoirA, dt:ProductionTubingA, dt:ProductionLineA, dt:PlatformA, dt:SubseaTreeA, dt:UmbilicalA .
+dt:ReservoirA dt:partOf dt:WellA .
+dt:ProductionTubingA dt:partOf dt:WellA .
+dt:ProductionLineA dt:partOf dt:WellA .
+dt:PlatformA dt:partOf dt:WellA .
+dt:SubseaTreeA dt:partOf dt:WellA .
+dt:UmbilicalA dt:partOf dt:WellA .
+
+dt:ReservoirA dt:connectedTo dt:ProductionTubingA .
+dt:ProductionTubingA dt:connectedTo dt:SubseaTreeA .
+dt:SubseaTreeA dt:connectedTo dt:ProductionLineA .
+dt:ProductionLineA dt:connectedTo dt:PlatformA .
+dt:UmbilicalA dt:connectedTo dt:SubseaTreeA .
+
+dt:WellA dt:hasFlowPath dt:FlowPathA .
+dt:FlowPathA a dt:FlowPath ;
+  dt:flowFrom dt:ReservoirA ;
+  dt:flowTo dt:PlatformA .
+
+dt:PDG dt:mountedOn dt:ProductionTubingA .
+dt:TPT dt:mountedOn dt:SubseaTreeA .
+dt:DHSV dt:mountedOn dt:ProductionTubingA .
+dt:PCK dt:mountedOn dt:PlatformA .
+
+# Additional equipment inferred from real tag names
+dt:CKP a dt:Valve ; dt:locatedAt dt:Surface .
+dt:CKGL a dt:Valve ; dt:locatedAt dt:Surface .
+dt:SDV_P a dt:Valve ; dt:locatedAt dt:Surface .
+dt:SDV_GL a dt:Valve ; dt:locatedAt dt:Surface .
+dt:W1 a dt:Valve ; dt:locatedAt dt:Surface .
+dt:W2 a dt:Valve ; dt:locatedAt dt:Surface .
+dt:PXO a dt:Valve ; dt:locatedAt dt:Surface .
+dt:XO a dt:Valve ; dt:locatedAt dt:Surface .
+dt:M1 a dt:Valve ; dt:locatedAt dt:Surface .
+dt:M2 a dt:Valve ; dt:locatedAt dt:Surface .
+
+dt:WellA dt:hasEquipment dt:CKP, dt:CKGL, dt:SDV_P, dt:SDV_GL, dt:W1, dt:W2, dt:PXO, dt:XO, dt:M1, dt:M2 .
+
+# Process variables
+
+dt:Pressure_PDG a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-PDG" .
+dt:Pressure_TPT a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-TPT" .
+dt:Temperature_TPT a dt:ProcessVariable ; dt:hasUnit dt:Celsius ; dt:tagName "T-TPT" .
+dt:Pressure_PCK_Upstream a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-MON-CKP" .
+dt:Temperature_PCK_Downstream a dt:ProcessVariable ; dt:hasUnit dt:Celsius ; dt:tagName "T-JUS-CKP" .
+
+# Additional variables present in the real dataset (tags)
+dt:AnnularPressure a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-ANULAR" .
+dt:Pressure_JUS_BS a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-JUS-BS" .
+dt:Pressure_JUS_CKGL a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-JUS-CKGL" .
+dt:Pressure_JUS_CKP a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-JUS-CKP" .
+dt:Pressure_MON_CKGL a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-MON-CKGL" .
+dt:Pressure_MON_SDV_P a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "P-MON-SDV-P" .
+dt:Pressure_PT_P a dt:ProcessVariable ; dt:hasUnit dt:Pascal ; dt:tagName "PT-P" .
+dt:Temperature_MON_CKP a dt:ProcessVariable ; dt:hasUnit dt:Celsius ; dt:tagName "T-MON-CKP" .
+dt:Temperature_PDG a dt:ProcessVariable ; dt:hasUnit dt:Celsius ; dt:tagName "T-PDG" .
+dt:Flow_QBS a dt:ProcessVariable ; dt:hasUnit dt:StdCubicMeterPerSecond ; dt:tagName "QBS" .
+dt:Flow_QGL a dt:ProcessVariable ; dt:hasUnit dt:StdCubicMeterPerSecond ; dt:tagName "QGL" .
+
+dt:Opening_CKGL a dt:ProcessVariable ; dt:hasUnit dt:Percent ; dt:tagName "ABER-CKGL" ; dt:relatedToEquipment dt:CKGL .
+dt:Opening_CKP a dt:ProcessVariable ; dt:hasUnit dt:Percent ; dt:tagName "ABER-CKP" ; dt:relatedToEquipment dt:CKP .
+
+dt:State_DHSV a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-DHSV" ; dt:relatedToEquipment dt:DHSV .
+dt:State_M1 a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-M1" ; dt:relatedToEquipment dt:M1 .
+dt:State_M2 a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-M2" ; dt:relatedToEquipment dt:M2 .
+dt:State_PXO a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-PXO" ; dt:relatedToEquipment dt:PXO .
+dt:State_SDV_GL a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-SDV-GL" ; dt:relatedToEquipment dt:SDV_GL .
+dt:State_SDV_P a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-SDV-P" ; dt:relatedToEquipment dt:SDV_P .
+dt:State_W1 a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-W1" ; dt:relatedToEquipment dt:W1 .
+dt:State_W2 a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-W2" ; dt:relatedToEquipment dt:W2 .
+dt:State_XO a dt:ProcessVariable ; dt:hasUnit dt:Unitless ; dt:tagName "ESTADO-XO" ; dt:relatedToEquipment dt:XO .
+
+# Sensors
+
+dt:PDG_PressureSensor a dt:PressureSensor ; dt:measures dt:Pressure_PDG .
+dt:TPT_PressureSensor a dt:PressureSensor ; dt:measures dt:Pressure_TPT .
+dt:TPT_TemperatureSensor a dt:TemperatureSensor ; dt:measures dt:Temperature_TPT .
+dt:PCK_UpstreamPressureSensor a dt:PressureSensor ; dt:measures dt:Pressure_PCK_Upstream .
+dt:PCK_DownstreamTemperatureSensor a dt:TemperatureSensor ; dt:measures dt:Temperature_PCK_Downstream .
+
+# Event types
+
+dt:NormalOperation a dt:EventType .
+dt:AbruptIncreaseBSW a dt:EventType ; dt:affectsVariable dt:Temperature_TPT, dt:Temperature_PCK_Downstream, dt:Pressure_PDG .
+dt:SpuriousClosureDHSV a dt:EventType ; dt:affectsVariable dt:Pressure_PDG, dt:Pressure_TPT, dt:Pressure_PCK_Upstream .
+dt:SevereSlugging a dt:EventType ; dt:affectsVariable dt:Pressure_PDG, dt:Pressure_TPT, dt:Pressure_PCK_Upstream, dt:Temperature_TPT, dt:Temperature_PCK_Downstream .
+dt:FlowInstability a dt:EventType ; dt:affectsVariable dt:Pressure_PDG, dt:Pressure_PCK_Upstream .
+dt:RapidProductivityLoss a dt:EventType ; dt:affectsVariable dt:Pressure_PDG, dt:Pressure_TPT, dt:Temperature_TPT .
+dt:QuickRestrictionPCK a dt:EventType ; dt:affectsVariable dt:Pressure_PCK_Upstream, dt:Temperature_PCK_Downstream .
+dt:ScalingPCK a dt:EventType ; dt:affectsVariable dt:Pressure_PCK_Upstream, dt:Temperature_PCK_Downstream .
+dt:HydrateProductionLine a dt:EventType ; dt:affectsVariable dt:Pressure_PDG, dt:Pressure_TPT, dt:Temperature_TPT .
+
+dt:SpuriousClosureDHSV dt:affectsEquipment dt:DHSV .
+dt:QuickRestrictionPCK dt:affectsEquipment dt:PCK .
+dt:ScalingPCK dt:affectsEquipment dt:PCK .
+
+# States
+
+dt:NormalState a dt:State .
+dt:FaultyTransient a dt:State .
+dt:FaultySteady a dt:State .
