@@ -136,3 +136,29 @@ python3 scripts/extract_instance_features.py --parquet data/Real/0/WELL-00001_20
 ```
 
 Paste the resulting JSON into the dashboard and click Evaluate.
+
+## Pipeline Setup (Infographic Report)
+
+To enable the PDF report generation feature:
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Generate synthetic data (if not already done):
+   ```bash
+   python3 scripts/generate_synthetic.py --instances 120 --length 3600 --output data/synthetic/synthetic_3w_like.csv
+   ```
+
+3. Train the pipeline model:
+   ```bash
+   python3 scripts/train_pipeline_model.py
+   ```
+
+4. Start the server:
+   ```bash
+   python3 server_groq.py
+   ```
+
+The endpoint `/api/generate-report` is now active.
