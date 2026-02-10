@@ -14,13 +14,18 @@ from __future__ import annotations
 
 import json
 import os
+import uuid
 from pathlib import Path
 from typing import Any, Dict, List
 
 import requests
+import pandas as pd
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 import subprocess
+
+# Import Pipeline
+from src.pipeline import IsolationForestPipeline
 
 load_dotenv()
 
@@ -33,6 +38,14 @@ REAL_ROOT = Path("data/Real").resolve()
 RETRAIN_SCRIPT = Path("scripts/train_isolation_forest_real_full.py").resolve()
 
 app = Flask(__name__)
+
+# Initialize Pipeline
+PIPELINE = None
+try:
+    PIPELINE = IsolationForestPipeline("data/isolation_forest_model.joblib", "data/imputer.joblib")
+    print("Pipeline loaded successfully.")
+except Exception as e:
+    print(f"Warning: Could not load pipeline: {e}")
 
 
 def _load_graph() -> Dict[str, Any]:
@@ -97,7 +110,9 @@ def _maybe_tool_request(text: str) -> Dict[str, Any] | None:
         obj = json.loads(text)
     except json.JSONDecodeError:
         return None
-    if obj.get("tool") == "ontology_lookup":
+
+    tool_name = obj.get("tool")
+    if tool_name in ["ontology_lookup", "select_user_role"]:
         return obj
     return None
 
@@ -114,22 +129,23 @@ def _is_safe_path(path: Path) -> bool:
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS, GET"
     return response
 
 
 @app.route("/api/list-files", methods=["GET"])
 def list_files():
     files: List[str] = []
-    for root, _, filenames in os.walk(REAL_ROOT):
-        for name in filenames:
-            if name.endswith(".parquet"):
-                rel = str(Path(root).resolve().relative_to(REAL_ROOT) / name)
-                files.append(rel)
-                if len(files) >= 300:
-                    break
-        if len(files) >= 300:
-            break
+    if REAL_ROOT.exists():
+        for root, _, filenames in os.walk(REAL_ROOT):
+            for name in filenames:
+                if name.endswith(".parquet"):
+                    rel = str(Path(root).resolve().relative_to(REAL_ROOT) / name)
+                    files.append(rel)
+                    if len(files) >= 300:
+                        break
+            if len(files) >= 300:
+                break
     return jsonify({"files": files})
 
 
@@ -200,6 +216,47 @@ def retrain():
     return jsonify({"error": "Model outputs missing"}), 500
 
 
+@app.route("/api/generate-report", methods=["POST", "OPTIONS"])
+def generate_report():
+    if request.method == "OPTIONS":
+        return ("", 204)
+
+    if not PIPELINE:
+         return jsonify({"error": "Pipeline not loaded. Ensure models are trained and saved in data/."}), 500
+
+    try:
+        body = request.get_json(force=True)
+        data = body.get("data")
+        user_role = body.get("user_role", "Manager") # Default to Manager
+
+        if not data:
+             return jsonify({"error": "Missing data"}), 400
+
+        prediction = PIPELINE.predict(data)
+
+        # Ensure download directory exists
+        download_dir = Path("dashboard/downloads")
+        download_dir.mkdir(parents=True, exist_ok=True)
+        # Use UUID for unique filenames
+        filename = f"report_{uuid.uuid4()}.pdf"
+        output_path = download_dir / filename
+
+        PIPELINE.generate_infographic_pdf(prediction, user_role, str(output_path))
+
+        return jsonify({
+            "pdf_url": f"/download/{filename}",
+            "prediction": prediction
+        })
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/download/<path:filename>")
+def download_file(filename):
+    return send_from_directory("dashboard/downloads", filename)
+
+
 @app.route("/api/chat", methods=["POST", "OPTIONS"])
 def chat():
     if request.method == "OPTIONS":
@@ -211,6 +268,7 @@ def chat():
         top_contrib = body.get("top_contrib", [])
         verdict = body.get("verdict", "unknown")
         score = body.get("score", 0)
+        user_role = body.get("user_role", "unknown")
     except Exception as exc:
         return jsonify({"answer": f"Invalid request: {exc}"}), 400
 
@@ -222,8 +280,14 @@ def chat():
 
     system = (
         "You are an assistant that explains anomaly model outputs using ontology context. "
+        f"The user is a {user_role}. "
+        "If the user is an Engineer, provide technical details and focus on maintenance quality. "
+        "If the user is a Manager, provide cost/profit analysis and high-level summaries. "
+        "Remember there is a cooldown period of 1 month every 6 months for maintenance. "
         "If you need more ontology details, respond ONLY with JSON: "
         '{"tool":"ontology_lookup","args":{"terms":["P-PDG","ABER-CKP"]}}. '
+        "If you need to switch user role or clarify it, respond ONLY with JSON: "
+        '{"tool":"select_user_role","args":{}}. '
         "Otherwise, answer concisely and cite tags and equipment involved."
     )
 
@@ -233,6 +297,7 @@ def chat():
         "top_contributors": top_contrib,
         "ontology_context": context,
         "question": question,
+        "user_role": user_role
     }
 
     messages = [
@@ -244,12 +309,17 @@ def chat():
     tool_req = _maybe_tool_request(first)
 
     if tool_req:
-        tool_terms = tool_req.get("args", {}).get("terms", [])
-        tool_result = _lookup_ontology(tool_terms)
-        messages.append({"role": "assistant", "content": first})
-        messages.append({"role": "tool", "content": json.dumps(tool_result)})
-        final = _call_groq(messages)
-        return jsonify({"answer": final})
+        tool_name = tool_req.get("tool")
+        if tool_name == "ontology_lookup":
+            tool_terms = tool_req.get("args", {}).get("terms", [])
+            tool_result = _lookup_ontology(tool_terms)
+            messages.append({"role": "assistant", "content": first})
+            messages.append({"role": "tool", "content": json.dumps(tool_result)})
+            final = _call_groq(messages)
+            return jsonify({"answer": final})
+        elif tool_name == "select_user_role":
+             # This tells the client to prompt for user role
+             return jsonify({"tool_request": "select_user_role", "answer": "I need to know if you are an Engineer or a Manager to provide the best answer."})
 
     return jsonify({"answer": first})
 
