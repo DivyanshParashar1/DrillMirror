@@ -136,3 +136,7 @@ python3 scripts/extract_instance_features.py --parquet data/Real/0/WELL-00001_20
 ```
 
 Paste the resulting JSON into the dashboard and click Evaluate.
+
+Dashboard extras:
+- Toggle chatbot mode (Engineer/Manager).
+- Generate PDF reports for Manager and Engineers (server-side).

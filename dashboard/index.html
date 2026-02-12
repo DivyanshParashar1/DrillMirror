@@ -80,6 +80,13 @@
     <section class="panel">
       <h2>Chatbot (Ontology-Aware)</h2>
       <div class="chat">
+        <div class="chat-mode">
+          <label class="muted">Mode</label>
+          <div class="toggle">
+            <button id="mode-engineer" class="toggle-btn active">Engineer</button>
+            <button id="mode-manager" class="toggle-btn">Manager</button>
+          </div>
+        </div>
         <div id="chat-log" class="chat-log"></div>
         <div class="chat-input">
           <input id="chat-question" type="text" placeholder="Ask why the model flagged this instance..." />
@@ -94,6 +101,10 @@
       <div class="input-actions">
         <button id="btn-retrain">Re-train Model</button>
         <span id="retrain-status" class="badge">idle</span>
+      </div>
+      <div class="input-actions">
+        <button id="btn-report-manager">Generate Report for Manager</button>
+        <button id="btn-report-engineer">Generate Report for Engineers</button>
       </div>
       <div class="kpi-grid">
         <div class="kpi"><h3>Precision</h3><span id="m-precision">0</span></div>
@@ -152,6 +163,7 @@
   <footer>
     Source: <code>ontology/oil_well_dt.ttl</code> summarized into JSON at build time.
   </footer>
+
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>

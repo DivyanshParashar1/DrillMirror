@@ -418,6 +418,19 @@
     });
 
   const tagMap = graph.tag_map || {};
+  let chatMode = "engineer";
+  const btnEngineer = $("mode-engineer");
+  const btnManager = $("mode-manager");
+  btnEngineer.addEventListener("click", () => {
+    chatMode = "engineer";
+    btnEngineer.classList.add("active");
+    btnManager.classList.remove("active");
+  });
+  btnManager.addEventListener("click", () => {
+    chatMode = "manager";
+    btnManager.classList.add("active");
+    btnEngineer.classList.remove("active");
+  });
 
   const explain = () => {
     const q = $("chat-question").value.trim();
@@ -432,6 +445,7 @@
       question: q,
       score: lastContrib.length ? Number($("model-output").textContent.match(/Score: ([0-9.]+)/)?.[1]) : 0,
       verdict: lastContrib.length ? $("model-output").textContent.split("|")[1]?.trim() : "unknown",
+      mode: chatMode,
       top_contrib: lastContrib.map((c) => {
         const tag = c.feature.split("_")[0];
         return { tag, z: c.z };
@@ -455,6 +469,28 @@
   };
 
   $("chat-send").addEventListener("click", explain);
+
+  const exportReport = async (type) => {
+    const verdict = $("model-output").textContent || "unknown";
+    const score = lastContrib.length ? Number($("model-output").textContent.match(/Score: ([0-9.]+)/)?.[1]) : 0;
+    const top_contrib = lastContrib.map((c) => ({ tag: c.feature.split("_")[0], z: c.z }));
+
+    const res = await fetch("http://localhost:5001/api/report", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type, verdict, score, top_contrib }),
+    });
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = type === "manager" ? "manager_report.pdf" : "engineer_report.pdf";
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  $("btn-report-manager").addEventListener("click", () => exportReport("manager"));
+  $("btn-report-engineer").addEventListener("click", () => exportReport("engineer"));
 
   // Retrain model
   $("btn-retrain").addEventListener("click", () => {

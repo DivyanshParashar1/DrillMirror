@@ -19,8 +19,13 @@ from typing import Any, Dict, List
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 import subprocess
+import tempfile
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 
 load_dotenv()
 
@@ -31,12 +36,22 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 ONTO_GRAPH = Path("ontology/ontology_graph.json")
 REAL_ROOT = Path("data/Real").resolve()
 RETRAIN_SCRIPT = Path("scripts/train_isolation_forest_real_full.py").resolve()
+MODEL_PATH = Path("data/model_results.json")
+SUMMARY_PATH = Path("data/real_summary.json")
 
 app = Flask(__name__)
 
 
 def _load_graph() -> Dict[str, Any]:
     return json.loads(ONTO_GRAPH.read_text(encoding="utf-8"))
+
+
+def _load_model() -> Dict[str, Any]:
+    return json.loads(MODEL_PATH.read_text(encoding="utf-8"))
+
+
+def _load_summary() -> Dict[str, Any]:
+    return json.loads(SUMMARY_PATH.read_text(encoding="utf-8"))
 
 
 def _lookup_ontology(terms: List[str]) -> Dict[str, Any]:
@@ -200,6 +215,84 @@ def retrain():
     return jsonify({"error": "Model outputs missing"}), 500
 
 
+def _render_report_pdf(report_type: str, verdict: str, score: float, top_contrib: List[Dict[str, Any]]) -> str:
+    model = _load_model()
+    summary = _load_summary()
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+        out_path = tmp.name
+
+    with PdfPages(out_path) as pdf:
+        # Page 1: Summary
+        fig = plt.figure(figsize=(8.27, 11.69))  # A4 portrait
+        fig.text(0.08, 0.95, "Manager Summary Report" if report_type == "manager" else "Engineering Incident Report", fontsize=16, weight="bold")
+        fig.text(0.08, 0.92, f"Verdict: {verdict} | Score: {score:.2f}", fontsize=10)
+
+        if report_type == "manager":
+            notes = (
+                "Plain-language impact: an unusual pattern was detected.\n"
+                "Typical offshore consequences include hours to days of downtime and measurable production loss.\n"
+                "Assumptions: public offshore drilling context; actual impact depends on well state and response time."
+            )
+        else:
+            notes = (
+                "Technical context: Isolation Forest trained on instance-level statistics across wells.\n"
+                "High anomaly score indicates deviation from baseline distributions.\n"
+                "Assumptions: public offshore drilling context; expect sensor noise, missing tags, and drift."
+            )
+        fig.text(0.08, 0.86, notes, fontsize=9)
+
+        # Top contributors bar
+        contrib_names = [c.get("tag", c.get("name", "tag")) for c in top_contrib][:10]
+        contrib_vals = [c.get("z", 0) for c in top_contrib][:10]
+        ax = fig.add_axes([0.1, 0.55, 0.8, 0.25])
+        ax.barh(contrib_names[::-1], contrib_vals[::-1], color="#ff8a65")
+        ax.set_title("Top Contributors (Current)", fontsize=10)
+        ax.set_xlabel("Deviation (z-score)")
+
+        # Score hist
+        ax2 = fig.add_axes([0.1, 0.25, 0.8, 0.22])
+        bins = model["score_hist"]["bins"]
+        ax2.bar(bins, model["score_hist"]["normal"], width=0.02, alpha=0.6, label="Normal")
+        ax2.bar(bins, model["score_hist"]["anomaly"], width=0.02, alpha=0.6, label="Anomaly")
+        ax2.set_title("Score Distribution (Historical)", fontsize=10)
+        ax2.legend(fontsize=8)
+
+        pdf.savefig(fig)
+        plt.close(fig)
+
+        # Page 2: Class distribution
+        fig2 = plt.figure(figsize=(8.27, 11.69))
+        fig2.text(0.08, 0.95, "Historical Instance Distribution", fontsize=14, weight="bold")
+        labels = list(summary["class_counts"].keys())
+        values = list(summary["class_counts"].values())
+        ax3 = fig2.add_axes([0.1, 0.55, 0.8, 0.35])
+        ax3.bar(labels, values, color="#7e57c2")
+        ax3.set_title("Instances by Class", fontsize=10)
+        ax3.set_xlabel("Class")
+        ax3.set_ylabel("Count")
+
+        pdf.savefig(fig2)
+        plt.close(fig2)
+
+    return out_path
+
+
+@app.route("/api/report", methods=["POST", "OPTIONS"])
+def report():
+    if request.method == "OPTIONS":
+        return ("", 204)
+
+    body = request.get_json(force=True)
+    report_type = body.get("type", "manager")
+    verdict = body.get("verdict", "unknown")
+    score = float(body.get("score", 0))
+    top_contrib = body.get("top_contrib", [])
+
+    out_path = _render_report_pdf(report_type, verdict, score, top_contrib)
+    return send_file(out_path, mimetype="application/pdf", as_attachment=True, download_name=f"{report_type}_report.pdf")
+
+
 @app.route("/api/chat", methods=["POST", "OPTIONS"])
 def chat():
     if request.method == "OPTIONS":
@@ -211,6 +304,7 @@ def chat():
         top_contrib = body.get("top_contrib", [])
         verdict = body.get("verdict", "unknown")
         score = body.get("score", 0)
+        mode = body.get("mode", "engineer")
     except Exception as exc:
         return jsonify({"answer": f"Invalid request: {exc}"}), 400
 
@@ -220,12 +314,22 @@ def chat():
     terms = [c.get("tag", "") for c in top_contrib if c.get("tag")]
     context = _lookup_ontology(terms) if terms else {"results": []}
 
-    system = (
-        "You are an assistant that explains anomaly model outputs using ontology context. "
-        "If you need more ontology details, respond ONLY with JSON: "
-        '{"tool":"ontology_lookup","args":{"terms":["P-PDG","ABER-CKP"]}}. '
-        "Otherwise, answer concisely and cite tags and equipment involved."
-    )
+    if mode == "manager":
+        system = (
+            "You are a manager-focused assistant. Use plain language and avoid technical jargon. "
+            "Give concrete consequences (downtime, production loss, safety impact) and estimated ranges. "
+            "If details are missing, make reasonable public-domain assumptions about offshore drilling. "
+            "If you need more ontology details, respond ONLY with JSON: "
+            '{"tool":"ontology_lookup","args":{"terms":["P-PDG","ABER-CKP"]}}.'
+        )
+    else:
+        system = (
+            "You are an engineer-focused assistant. Explain model outputs with technical detail and subsystem reasoning. "
+            "Be explicit about which tags and equipment are implicated and how the system behaves. "
+            "If details are missing, make reasonable public-domain assumptions about offshore drilling. "
+            "If you need more ontology details, respond ONLY with JSON: "
+            '{"tool":"ontology_lookup","args":{"terms":["P-PDG","ABER-CKP"]}}.'
+        )
 
     user = {
         "verdict": verdict,
