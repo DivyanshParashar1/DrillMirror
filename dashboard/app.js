@@ -98,9 +98,19 @@
       .attr("width", width)
       .attr("height", height);
 
-    const nodes = graph.nodes.slice(0, 120 * depth);
-    const nodeIds = new Set(nodes.map((n) => n.id));
-    const edges = graph.edges.filter((e) => nodeIds.has(e.source) && nodeIds.has(e.target));
+    const zoomLayer = svg.append("g");
+
+    const zoom = d3.zoom().scaleExtent([0.5, 2.0]).on("zoom", (event) => {
+      zoomLayer.attr("transform", event.transform);
+    });
+    svg.call(zoom);
+
+    // Map slider to zoom scale (1..4 -> 0.6..1.6)
+    const zoomScale = 0.3 * depth + 0.3;
+    svg.call(zoom.transform, d3.zoomIdentity.scale(zoomScale));
+
+    const nodes = graph.nodes.slice();
+    const edges = graph.edges.slice();
 
     graphCount.textContent = `${nodes.length} nodes`;
 
@@ -114,7 +124,7 @@
       .force("charge", d3.forceManyBody().strength(-320))
       .force("center", d3.forceCenter(width / 2, height / 2));
 
-    const link = svg
+    const link = zoomLayer
       .append("g")
       .attr("stroke", "#2a343e")
       .selectAll("line")
@@ -122,7 +132,7 @@
       .join("line")
       .attr("stroke-width", 1);
 
-    const node = svg
+    const node = zoomLayer
       .append("g")
       .selectAll("circle")
       .data(nodes)
@@ -148,7 +158,7 @@
           })
       );
 
-    const labels = svg
+    const labels = zoomLayer
       .append("g")
       .selectAll("text")
       .data(nodes)
