@@ -223,26 +223,33 @@ def _render_report_pdf(report_type: str, verdict: str, score: float, top_contrib
         out_path = tmp.name
 
     with PdfPages(out_path) as pdf:
-        # Page 1: Summary
-        fig = plt.figure(figsize=(8.27, 11.69))  # A4 portrait
+        fig = plt.figure(figsize=(8.27, 11.69))
         fig.text(0.08, 0.95, "Manager Summary Report" if report_type == "manager" else "Engineering Incident Report", fontsize=16, weight="bold")
         fig.text(0.08, 0.92, f"Verdict: {verdict} | Score: {score:.2f}", fontsize=10)
 
+        notes = "You are an assistant that explains anomaly model outputs using ontology context. "
+        "If you need more ontology details, respond ONLY with JSON: "
+        '{"tool":"ontology_lookup","args":{"terms":["P-PDG","ABER-CKP"]}}. '
+        "Otherwise, answer concisely and cite tags and equipment involved."
+
         if report_type == "manager":
             notes = (
-                "Plain-language impact: an unusual pattern was detected.\n"
-                "Typical offshore consequences include hours to days of downtime and measurable production loss.\n"
-                "Assumptions: public offshore drilling context; actual impact depends on well state and response time."
+                "You are a manager-focused assistant. Explain model outputs in simple, non-technical terms. "
+            "Focus on business impact, downtime risk, and operational consequences. "
+            "Assume publicly available offshore drilling context (typical downtime ranges and production loss). "
+            "If you need more ontology details, respond ONLY with JSON: "
+            '{"tool":"ontology_lookup","args":{"terms":["P-PDG","ABER-CKP"]}}.'
             )
         else:
             notes = (
-                "Technical context: Isolation Forest trained on instance-level statistics across wells.\n"
-                "High anomaly score indicates deviation from baseline distributions.\n"
-                "Assumptions: public offshore drilling context; expect sensor noise, missing tags, and drift."
-            )
+            "You are an engineer-focused assistant. Explain model outputs with technical detail and subsystem reasoning. "
+            "Be explicit about which tags and equipment are implicated and how the system behaves. "
+            "Assume publicly available offshore drilling context (typical downtime ranges and operational constraints). "
+            "If you need more ontology details, respond ONLY with JSON: "
+            '{"tool":"ontology_lookup","args":{"terms":["P-PDG","ABER-CKP"]}}.'
+        )
         fig.text(0.08, 0.86, notes, fontsize=9)
 
-        # Top contributors bar
         contrib_names = [c.get("tag", c.get("name", "tag")) for c in top_contrib][:10]
         contrib_vals = [c.get("z", 0) for c in top_contrib][:10]
         ax = fig.add_axes([0.1, 0.55, 0.8, 0.25])
@@ -250,7 +257,6 @@ def _render_report_pdf(report_type: str, verdict: str, score: float, top_contrib
         ax.set_title("Top Contributors (Current)", fontsize=10)
         ax.set_xlabel("Deviation (z-score)")
 
-        # Score hist
         ax2 = fig.add_axes([0.1, 0.25, 0.8, 0.22])
         bins = model["score_hist"]["bins"]
         ax2.bar(bins, model["score_hist"]["normal"], width=0.02, alpha=0.6, label="Normal")
@@ -261,7 +267,6 @@ def _render_report_pdf(report_type: str, verdict: str, score: float, top_contrib
         pdf.savefig(fig)
         plt.close(fig)
 
-        # Page 2: Class distribution
         fig2 = plt.figure(figsize=(8.27, 11.69))
         fig2.text(0.08, 0.95, "Historical Instance Distribution", fontsize=14, weight="bold")
         labels = list(summary["class_counts"].keys())
