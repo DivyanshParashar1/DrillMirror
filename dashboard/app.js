@@ -438,7 +438,7 @@
     const log = $("chat-log");
     const item = document.createElement("div");
     item.className = "chat-message";
-    item.textContent = `Q: ${q}\nA: thinking...`;
+    item.innerHTML = marked.parse(`**Q:** ${q}\n\n**A:** thinking...`);
     log.appendChild(item);
 
     const payload = {
@@ -459,10 +459,10 @@
     })
       .then((r) => r.json())
       .then((data) => {
-        item.textContent = `Q: ${q}\nA: ${data.answer}`;
+        item.innerHTML = marked.parse(`**Q:** ${q}\n\n**A:** ${data.answer}`);
       })
       .catch(() => {
-        item.textContent = `Q: ${q}\nA: Could not reach the chatbot server.`;
+        item.innerHTML = marked.parse(`**Q:** ${q}\n\n**A:** Could not reach the chatbot server.`);
       });
 
     $("chat-question").value = "";
