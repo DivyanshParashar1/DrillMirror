@@ -24,8 +24,83 @@ body {
   min-height: 100vh;
 }
 
+body.light {
+  --bg: #f4f1ea;
+  --bg-2: #ffffff;
+  --card: #fffaf2;
+  --accent: #b45309;
+  --accent-2: #0f766e;
+  --ink: #2d241a;
+  --muted: #6b5a4a;
+  --stroke: #eadfce;
+  --shadow: 0 12px 28px rgba(76, 63, 50, 0.14);
+}
+
+body.light {
+  background: radial-gradient(circle at 15% 15%, #fff6e6, #f4f1ea 55%),
+    linear-gradient(135deg, rgba(180, 83, 9, 0.08), transparent 35%),
+    var(--bg);
+}
+
+body.light .panel,
+body.light .map-card,
+body.light .event-card,
+body.light .glossary-item,
+body.light .chart-card,
+body.light .output-box,
+body.light .chat-log {
+  background: #fffdf7;
+  border-color: #eadfce;
+}
+
+body.light .badge {
+  background: #fff5e6;
+  border-color: #eadfce;
+}
+
+body.light .badge::before {
+  background: var(--accent-2);
+}
+
+body.light button {
+  background: var(--accent);
+  color: #fffaf2;
+}
+
+body.light textarea,
+body.light .search input,
+body.light .chat-input input,
+body.light select {
+  background: #fffaf2;
+  color: var(--ink);
+  border-color: #eadfce;
+}
+
+body.light .table th,
+body.light .table td {
+  border-bottom-color: #eadfce;
+}
+
+body.light #graph {
+  background: #fffdf7;
+  border-color: #eadfce;
+}
+
 header {
   padding: 48px 64px 32px;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 h1 {
@@ -165,6 +240,41 @@ main {
 .map-card h4 {
   margin: 0 0 6px;
   font-size: 15px;
+}
+
+.events-list {
+  display: grid;
+  gap: 12px;
+}
+
+.event-card {
+  background: #111820;
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.event-card h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.glossary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.glossary-item {
+  background: #111820;
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.glossary-item h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
 }
 
 .graph-head {

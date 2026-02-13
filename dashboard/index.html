@@ -3,52 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oil Well Ontology Dashboard</title>
+  <title>Offshore Well Event Monitoring & Explanation</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="glow"></div>
   <header>
-    <h1>Ontology Dashboard</h1>
-    <p>
-      A visual inventory of the oil-well digital twin ontology, including classes,
-      properties, instances, and a live relationship graph derived from
-      <code>ontology/oil_well_dt.ttl</code>.
-    </p>
+    <div class="header-row">
+      <div>
+        <h1>Offshore Well Event Monitoring & Explanation</h1>
+        <p>
+          This dashboard helps managers understand unusual well behavior, why it matters,
+          and what parts of the system are most likely involved.
+        </p>
+      </div>
+      <div class="mode-toggle">
+        <label class="muted">Theme</label>
+        <button id="theme-toggle">Light</button>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="panel">
-      <div class="kpi-grid">
-        <div class="kpi"><h3>Classes</h3><span id="kpi-classes">0</span></div>
-        <div class="kpi"><h3>Object Properties</h3><span id="kpi-obj">0</span></div>
-        <div class="kpi"><h3>Datatype Properties</h3><span id="kpi-data">0</span></div>
-        <div class="kpi"><h3>Instances</h3><span id="kpi-instances">0</span></div>
-      </div>
-    </section>
-
-    <section class="panel two-col">
-      <div>
-        <h2>Classes</h2>
-        <div id="class-list" class="list"></div>
-      </div>
-      <div>
-        <h2>Properties</h2>
-        <div id="prop-list" class="list"></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="graph-head">
-        <h2>Ontology Graph</h2>
-        <div class="graph-controls">
-          <label>Zoom
-            <input id="graph-depth" type="range" min="1" max="4" value="2" />
-          </label>
-          <span id="graph-count" class="badge">0 nodes</span>
-        </div>
-      </div>
-      <div id="graph"></div>
+      <h2>Undesirable Events (Plain Definitions)</h2>
+      <div id="events-list" class="events-list"></div>
     </section>
 
     <section class="panel">
@@ -127,6 +106,30 @@
     </section>
 
     <section class="panel">
+      <div class="graph-head">
+        <h2>Ontology Graph</h2>
+        <div class="graph-controls">
+          <label>Zoom
+            <input id="graph-depth" type="range" min="1" max="4" value="2" />
+          </label>
+          <span id="graph-count" class="badge">0 nodes</span>
+        </div>
+      </div>
+      <div id="graph"></div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Ontology Classes</h2>
+        <div id="class-list" class="list"></div>
+      </div>
+      <div>
+        <h2>Ontology Properties</h2>
+        <div id="prop-list" class="list"></div>
+      </div>
+    </section>
+
+    <section class="panel">
       <h2>Real Data Labels</h2>
       <div class="charts">
         <div class="chart-card">
@@ -157,6 +160,11 @@
         </thead>
         <tbody id="instance-table"></tbody>
       </table>
+    </section>
+
+    <section class="panel">
+      <h2>Ontology Glossary</h2>
+      <div id="ontology-glossary" class="glossary"></div>
     </section>
   </main>
 

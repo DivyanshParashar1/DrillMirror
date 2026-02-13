@@ -7,10 +7,13 @@
 
   const $ = (id) => document.getElementById(id);
 
-  $("kpi-classes").textContent = summary.classes.length;
-  $("kpi-obj").textContent = summary.object_properties.length;
-  $("kpi-data").textContent = summary.datatype_properties.length;
-  $("kpi-instances").textContent = summary.instances.length;
+  const kpiClasses = $("kpi-classes");
+  if (kpiClasses) {
+    kpiClasses.textContent = summary.classes.length;
+    $("kpi-obj").textContent = summary.object_properties.length;
+    $("kpi-data").textContent = summary.datatype_properties.length;
+    $("kpi-instances").textContent = summary.instances.length;
+  }
 
   const classList = $("class-list");
   summary.classes.forEach((c) => {
@@ -26,6 +29,102 @@
     span.className = "badge";
     span.textContent = p;
     propList.appendChild(span);
+  });
+
+  // Theme toggle
+  const themeToggle = $("theme-toggle");
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    themeToggle.textContent = document.body.classList.contains("light") ? "Dark" : "Light";
+  });
+
+  // Undesirable events (manager-friendly)
+  const events = [
+    {
+      name: "Abrupt Increase of BSW",
+      desc: "A sudden jump in water/sediment percentage. This reduces oil output and can raise processing costs.",
+    },
+    {
+      name: "Spurious Closure of DHSV",
+      desc: "A safety valve closes unexpectedly, cutting flow. This can trigger immediate production loss.",
+    },
+    {
+      name: "Severe Slugging",
+      desc: "Strong, repeating flow surges that stress equipment and can disrupt production.",
+    },
+    {
+      name: "Flow Instability",
+      desc: "Irregular swings in pressure/temperature without clear periodicity. It can grow into slugging.",
+    },
+    {
+      name: "Rapid Productivity Loss",
+      desc: "Production drops quickly as reservoir or flow conditions deteriorate.",
+    },
+    {
+      name: "Quick Restriction in PCK",
+      desc: "Surface choke valve restricts quickly, often from operations, reducing flow abruptly.",
+    },
+    {
+      name: "Scaling in PCK",
+      desc: "Mineral buildup in the choke reduces flow over time and may require intervention.",
+    },
+    {
+      name: "Hydrate in Production Line",
+      desc: "Ice-like hydrates form and block flow, risking long downtime until cleared.",
+    },
+  ];
+
+  const eventsList = $("events-list");
+  events.forEach((e) => {
+    const card = document.createElement("div");
+    card.className = "event-card";
+    card.innerHTML = `<h3>${e.name}</h3><p class="muted">${e.desc}</p>`;
+    eventsList.appendChild(card);
+  });
+
+  // Ontology glossary (manager-friendly definitions)
+  const glossary = [
+    { term: "OilWell", def: "The whole well system from reservoir to platform." },
+    { term: "Equipment", def: "Physical devices used to control or measure flow." },
+    { term: "Sensor", def: "Device that measures pressure, temperature, or flow." },
+    { term: "PressureSensor", def: "Sensor that measures pressure." },
+    { term: "TemperatureSensor", def: "Sensor that measures temperature." },
+    { term: "Valve", def: "Device that opens/closes or restricts flow." },
+    { term: "Gauge", def: "Instrument that measures pressure or temperature." },
+    { term: "Transducer", def: "Device converting physical signals into measurements." },
+    { term: "Reservoir", def: "Underground zone holding oil and gas." },
+    { term: "ProductionTubing", def: "Pipe carrying fluids from reservoir upward." },
+    { term: "ProductionLine", def: "Pipe carrying fluids from seabed to platform." },
+    { term: "SubseaChristmasTree", def: "Seabed valve/sensor assembly for flow control." },
+    { term: "Umbilical", def: "Control line connecting platform to subsea equipment." },
+    { term: "Platform", def: "Surface facility receiving and processing production." },
+    { term: "FlowPath", def: "The route fluids follow from reservoir to platform." },
+    { term: "DHSV", def: "Downhole safety valve that shuts the well in emergencies." },
+    { term: "PCK", def: "Production choke valve controlling surface flow." },
+    { term: "CKP", def: "Production choke valve tag used in the dataset." },
+    { term: "CKGL", def: "Gas‑lift choke valve tag used in the dataset." },
+    { term: "SDV_P", def: "Surface shutdown valve for production line." },
+    { term: "SDV_GL", def: "Surface shutdown valve for gas‑lift line." },
+    { term: "W1/W2", def: "Well valve tags used in the dataset." },
+    { term: "PXO/XO", def: "Valve tags used in the dataset." },
+    { term: "M1/M2", def: "Valve tags used in the dataset." },
+    { term: "PDG", def: "Downhole pressure gauge." },
+    { term: "TPT", def: "Temperature and pressure transducer near the tree." },
+    { term: "ProcessVariable", def: "A measured value like pressure, temperature, or flow." },
+    { term: "Observation", def: "A single measurement at a time point." },
+    { term: "EventType", def: "Category of abnormal behavior (e.g., slugging)." },
+    { term: "EventInstance", def: "A specific occurrence of an event in time." },
+    { term: "State", def: "Normal, transient, or steady faulty state." },
+    { term: "Unit", def: "Measurement unit (e.g., Pa, C)." },
+    { term: "Location", def: "Where equipment is located (downhole, subsea, surface)." },
+  ];
+
+  const glossaryEl = $("ontology-glossary");
+  glossary.forEach((g) => {
+    const item = document.createElement("div");
+    item.className = "glossary-item";
+    item.innerHTML = `<h4>${g.term}</h4><p class="muted">${g.def}</p>`;
+    glossaryEl.appendChild(item);
   });
 
   const grouped = summary.instances.reduce((acc, inst) => {
