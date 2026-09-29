@@ -1,11 +1,43 @@
-(async function () {
-  const summary = await fetch("../ontology/ontology_summary.json").then((r) => r.json());
-  const graph = await fetch("../ontology/ontology_graph.json").then((r) => r.json());
-  let model = await fetch("../data/model_results.json").then((r) => r.json());
-  const realSummary = await fetch("../data/real_summary.json").then((r) => r.json());
-  let stats = await fetch("../data/feature_stats.json").then((r) => r.json());
+const API_BASE = window.DRILLMIRROR_API_BASE || "http://localhost:5001";
 
+(async function () {
   const $ = (id) => document.getElementById(id);
+
+  const fetchJson = async (url, label) => {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`${label}: HTTP ${res.status}`);
+    return res.json();
+  };
+
+  let summary, graph, model, realSummary, stats;
+  try {
+    [summary, graph, model, realSummary, stats] = await Promise.all([
+      fetchJson("../ontology/ontology_summary.json", "ontology_summary"),
+      fetchJson("../ontology/ontology_graph.json", "ontology_graph"),
+      fetchJson("../data/model_results.json", "model_results"),
+      fetchJson("../data/real_summary.json", "real_summary"),
+      fetchJson("../data/feature_stats.json", "feature_stats"),
+    ]);
+  } catch (err) {
+    const banner = document.createElement("div");
+    banner.className = "load-error";
+    banner.innerHTML = `<strong>Failed to load dashboard data.</strong><br>
+      ${err.message}<br>
+      <span class="muted">Check that the JSON files exist in <code>ontology/</code> and <code>data/</code>, then reload.</span>`;
+    document.querySelector("main")?.prepend(banner);
+    return;
+  }
+
+  // Ping chatbot server for status pill
+  const serverDot = $("server-dot");
+  const serverLabel = $("server-label");
+  const setServerStatus = (cls, text) => {
+    if (serverDot) serverDot.className = `status-dot ${cls}`;
+    if (serverLabel) serverLabel.textContent = text;
+  };
+  fetch(`${API_BASE}/api/list-files`, { method: "GET" })
+    .then((r) => (r.ok ? setServerStatus("ok", "server online") : setServerStatus("err", "server error")))
+    .catch(() => setServerStatus("err", "server offline"));
 
   const kpiClasses = $("kpi-classes");
   if (kpiClasses) {
@@ -31,12 +63,16 @@
     propList.appendChild(span);
   });
 
-  // Theme toggle
+  // Theme toggle — label reflects the CURRENT theme, click switches it
   const themeToggle = $("theme-toggle");
+  const applyThemeLabel = () => {
+    const isLight = document.body.classList.contains("light");
+    themeToggle.textContent = isLight ? "☀ Light" : "☾ Dark";
+  };
+  applyThemeLabel();
   themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light");
-    themeToggle.textContent = document.body.classList.contains("light") ? "Dark" : "Light";
-    
+    applyThemeLabel();
   });
 
   // Undesirable events (manager-friendly)
@@ -317,7 +353,7 @@
         y: { stacked: true },
       },
       plugins: {
-        legend: { labels: { color: "#cfd8dc" } },
+        legend: { labels: { color: getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#cfd8dc" } },
       },
     },
   });
@@ -354,7 +390,7 @@
         y: { ticks: { maxTicksLimit: 6 } },
       },
       plugins: {
-        legend: { labels: { color: "#cfd8dc" } },
+        legend: { labels: { color: getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#cfd8dc" } },
       },
     },
   });
@@ -378,7 +414,7 @@
     options: {
       responsive: true,
       plugins: {
-        legend: { labels: { color: "#cfd8dc" } },
+        legend: { labels: { color: getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#cfd8dc" } },
       },
     },
   });
@@ -405,13 +441,13 @@
     options: {
       responsive: true,
       plugins: {
-        legend: { labels: { color: "#cfd8dc" } },
+        legend: { labels: { color: getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#cfd8dc" } },
       },
     },
   });
 
   // Load real files into dropdown
-  fetch("http://localhost:5001/api/list-files")
+  fetch(`${API_BASE}/api/list-files`)
     .then((r) => r.json())
     .then((data) => {
       const sel = $("file-select");
@@ -428,7 +464,7 @@
     const sel = $("file-select");
     if (!sel.value) return;
     $("input-status").textContent = "loading...";
-    fetch("http://localhost:5001/api/extract-features", {
+    fetch(`${API_BASE}/api/extract-features`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ path: sel.value }),
@@ -562,7 +598,7 @@
       }),
     };
 
-    fetch("http://localhost:5001/api/chat", {
+    fetch(`${API_BASE}/api/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -585,7 +621,7 @@
     const score = lastContrib.length ? Number($("model-output").textContent.match(/Score: ([0-9.]+)/)?.[1]) : 0;
     const top_contrib = lastContrib.map((c) => ({ tag: c.feature.split("_")[0], z: c.z }));
 
-    const res = await fetch("http://localhost:5001/api/report", {
+    const res = await fetch(`${API_BASE}/api/report`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type, verdict, score, top_contrib }),
@@ -605,7 +641,7 @@
   // Retrain model
   $("btn-retrain").addEventListener("click", () => {
     $("retrain-status").textContent = "running...";
-    fetch("http://localhost:5001/api/retrain", { method: "POST" })
+    fetch(`${API_BASE}/api/retrain`, { method: "POST" })
       .then((r) => r.json())
       .then((data) => {
         if (data.model && data.feature_stats) {

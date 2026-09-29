@@ -18,24 +18,40 @@
         </p>
       </div>
       <div class="mode-toggle">
-        <label class="muted">Theme</label>
-        <button id="theme-toggle">Light</button>
+        <button id="theme-toggle" title="Toggle theme">☾ Dark</button>
       </div>
     </div>
   </header>
 
+  <nav class="topnav" aria-label="Section navigation">
+    <a href="#sec-events">Events</a>
+    <a href="#sec-test">Evaluator</a>
+    <a href="#sec-chat">Chatbot</a>
+    <a href="#sec-model">Model</a>
+    <a href="#sec-graph">Ontology Graph</a>
+    <a href="#sec-classes">Classes</a>
+    <a href="#sec-real">Real Data</a>
+    <a href="#sec-browser">Instances</a>
+    <a href="#sec-glossary">Glossary</a>
+    <span class="spacer"></span>
+    <span id="server-status" class="status-pill">
+      <span id="server-dot" class="status-dot wait"></span>
+      <span id="server-label">checking server…</span>
+    </span>
+  </nav>
+
   <main>
-    <section class="panel">
+    <section id="sec-events" class="panel">
       <h2>Undesirable Events (Plain Definitions)</h2>
       <div id="events-list" class="events-list"></div>
     </section>
 
-    <section class="panel">
+    <section id="sec-test" class="panel">
       <h2>Test Input + Explanation</h2>
       <div class="input-grid">
         <div>
           <h3>Instance Features JSON</h3>
-          <p class="muted">Paste the instance-level feature JSON (e.g., from <code>scripts/extract_instance_features.py</code>).</p>
+          <p class="muted">Paste the instance-level feature JSON (e.g., from <code>python -m drillmirror.data_pipeline.extract_instance_features</code>).</p>
           <div class="input-actions">
             <label class="muted">Load real file</label>
             <select id="file-select"></select>
@@ -56,7 +72,7 @@
       </div>
     </section>
 
-    <section class="panel">
+    <section id="sec-chat" class="panel">
       <h2>Chatbot (Ontology-Aware)</h2>
       <div class="chat">
         <div class="chat-mode">
@@ -75,7 +91,7 @@
       </div>
     </section>
 
-    <section class="panel">
+    <section id="sec-model" class="panel">
       <h2>Isolation Forest Results</h2>
       <div class="input-actions">
         <button id="btn-retrain">Re-train Model</button>
@@ -105,7 +121,7 @@
       </div>
     </section>
 
-    <section class="panel">
+    <section id="sec-graph" class="panel">
       <div class="graph-head">
         <h2>Ontology Graph</h2>
         <div class="graph-controls">
@@ -118,7 +134,7 @@
       <div id="graph"></div>
     </section>
 
-    <section class="panel two-col">
+    <section id="sec-classes" class="panel two-col">
       <div>
         <h2>Ontology Classes</h2>
         <div id="class-list" class="list"></div>
@@ -129,7 +145,7 @@
       </div>
     </section>
 
-    <section class="panel">
+    <section id="sec-real" class="panel">
       <h2>Real Data Labels</h2>
       <div class="charts">
         <div class="chart-card">
@@ -143,7 +159,7 @@
       </div>
     </section>
 
-    <section class="panel">
+    <section id="sec-browser" class="panel">
       <h2>Instances by Class</h2>
       <div id="instance-map" class="map"></div>
     </section>
@@ -162,7 +178,7 @@
       </table>
     </section>
 
-    <section class="panel">
+    <section id="sec-glossary" class="panel">
       <h2>Ontology Glossary</h2>
       <div id="ontology-glossary" class="glossary"></div>
     </section>
