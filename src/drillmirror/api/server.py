@@ -35,7 +35,7 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 ONTO_GRAPH = Path("ontology/ontology_graph.json")
 REAL_ROOT = Path("data/Real").resolve()
-RETRAIN_SCRIPT = Path("scripts/train_isolation_forest_real_full.py").resolve()
+RETRAIN_MODULE = "drillmirror.models.train_isolation_forest_real_full"
 MODEL_PATH = Path("data/model_results.json")
 SUMMARY_PATH = Path("data/real_summary.json")
 
@@ -195,11 +195,8 @@ def retrain():
     if request.method == "OPTIONS":
         return ("", 204)
 
-    if not RETRAIN_SCRIPT.exists():
-        return jsonify({"error": "Retrain script not found"}), 500
-
     try:
-        subprocess.run(["python3", str(RETRAIN_SCRIPT)], check=True, timeout=3600)
+        subprocess.run(["python3", "-m", RETRAIN_MODULE], check=True, timeout=3600)
     except subprocess.TimeoutExpired:
         return jsonify({"error": "Retraining timed out"}), 500
     except subprocess.CalledProcessError as exc:

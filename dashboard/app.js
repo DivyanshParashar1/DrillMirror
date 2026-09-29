@@ -36,6 +36,7 @@
   themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light");
     themeToggle.textContent = document.body.classList.contains("light") ? "Dark" : "Light";
+    
   });
 
   // Undesirable events (manager-friendly)

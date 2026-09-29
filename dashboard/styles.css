@@ -256,7 +256,7 @@ main {
 
 .event-card h3 {
   margin: 0 0 6px;
-  font-size: 14px;
+  font-size: 30px;
 }
 
 .glossary {
@@ -434,7 +434,7 @@ button {
 
 .muted {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 25px;
 }
 
 footer {

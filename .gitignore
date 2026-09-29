@@ -1,2 +1,22 @@
+# Environment
 .env
-/data
+
+# OS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Large data artifacts (kept locally, not in repo)
+data/Real/
+data/synthetic/
+data/*.joblib
+
+# Research reference
+researchPaperOilDrilling.pdf
