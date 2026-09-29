@@ -36,10 +36,16 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 ONTO_GRAPH = Path("ontology/ontology_graph.json")
 REAL_ROOT = Path("data/Real").resolve()
 RETRAIN_MODULE = "drillmirror.models.train_isolation_forest_real_full"
+GENERATE_MODULE = "drillmirror.data_pipeline.generate_synthetic"
 MODEL_PATH = Path("data/model_results.json")
 SUMMARY_PATH = Path("data/real_summary.json")
+SYNTHETIC_DIR = Path("data/synthetic")
+UPLOAD_DIR = Path("data/uploads")
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+SYNTHETIC_DIR.mkdir(parents=True, exist_ok=True)
 
 app = Flask(__name__)
+app.config["MAX_CONTENT_LENGTH"] = 512 * 1024 * 1024  # 512 MB upload cap
 
 
 def _load_graph() -> Dict[str, Any]:
@@ -129,7 +135,7 @@ def _is_safe_path(path: Path) -> bool:
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
     return response
 
 
@@ -148,6 +154,30 @@ def list_files():
     return jsonify({"files": files})
 
 
+def _parquet_to_features(path: Path) -> Dict[str, float]:
+    import pyarrow.parquet as pq
+
+    df = pq.read_table(path).to_pandas()
+    df = df.drop(columns=[c for c in ("class", "state") if c in df.columns], errors="ignore")
+
+    feats: Dict[str, float] = {}
+    for col in df.columns:
+        series = df[col]
+        mean = float(series.mean(skipna=True))
+        std = float(series.std(skipna=True))
+        min_v = float(series.min(skipna=True))
+        max_v = float(series.max(skipna=True))
+        if not (mean == mean and std == std and min_v == min_v and max_v == max_v):
+            continue
+        if not all(abs(v) != float("inf") for v in (mean, std, min_v, max_v)):
+            continue
+        feats[f"{col}_mean"] = mean
+        feats[f"{col}_std"] = std
+        feats[f"{col}_min"] = min_v
+        feats[f"{col}_max"] = max_v
+    return feats
+
+
 @app.route("/api/extract-features", methods=["POST", "OPTIONS"])
 def extract_features():
     if request.method == "OPTIONS":
@@ -162,32 +192,78 @@ def extract_features():
     if not _is_safe_path(full_path) or not full_path.exists():
         return jsonify({"error": "Invalid path"}), 400
 
-    # Use the same logic as scripts/extract_instance_features.py
-    import pyarrow.parquet as pq
+    return jsonify({"features": _parquet_to_features(full_path)})
 
-    df = pq.read_table(full_path).to_pandas()
-    df = df.drop(columns=[c for c in ("class", "state") if c in df.columns], errors="ignore")
 
-    feats = {}
-    for col in df.columns:
-        series = df[col]
-        mean = float(series.mean(skipna=True))
-        std = float(series.std(skipna=True))
-        min_v = float(series.min(skipna=True))
-        max_v = float(series.max(skipna=True))
+@app.route("/api/upload-parquet", methods=["POST", "OPTIONS"])
+def upload_parquet():
+    if request.method == "OPTIONS":
+        return ("", 204)
 
-        # Drop NaN or non-finite values to avoid JSON issues on the client
-        if not (mean == mean and std == std and min_v == min_v and max_v == max_v):
-            continue
-        if not all(map(lambda v: abs(v) != float("inf"), [mean, std, min_v, max_v])):
-            continue
+    if "file" not in request.files:
+        return jsonify({"error": "No file field in request"}), 400
 
-        feats[f"{col}_mean"] = mean
-        feats[f"{col}_std"] = std
-        feats[f"{col}_min"] = min_v
-        feats[f"{col}_max"] = max_v
+    upload = request.files["file"]
+    if not upload.filename:
+        return jsonify({"error": "Empty filename"}), 400
+    if not upload.filename.lower().endswith(".parquet"):
+        return jsonify({"error": "Only .parquet files are accepted"}), 400
 
-    return jsonify({"features": feats})
+    safe_name = Path(upload.filename).name
+    dest = UPLOAD_DIR / safe_name
+    upload.save(dest)
+
+    try:
+        feats = _parquet_to_features(dest)
+    except Exception as exc:
+        return jsonify({"error": f"Feature extraction failed: {exc}"}), 500
+
+    return jsonify({
+        "features": feats,
+        "filename": safe_name,
+        "rows": None,
+        "cols": len([k for k in feats.keys() if k.endswith("_mean")]),
+    })
+
+
+@app.route("/api/generate-synthetic", methods=["POST", "OPTIONS"])
+def generate_synthetic():
+    if request.method == "OPTIONS":
+        return ("", 204)
+
+    body = request.get_json(force=True) or {}
+    instances = int(body.get("instances", 60))
+    length = int(body.get("length", 3600))
+    filename = str(body.get("filename", "synthetic_3w_like.csv"))
+
+    if instances < 1 or instances > 2000:
+        return jsonify({"error": "instances must be between 1 and 2000"}), 400
+    if length < 60 or length > 86400:
+        return jsonify({"error": "length must be between 60 and 86400 seconds"}), 400
+    if "/" in filename or "\\" in filename or not filename.endswith(".csv"):
+        return jsonify({"error": "filename must be a plain .csv name"}), 400
+
+    out_path = SYNTHETIC_DIR / filename
+    cmd = [
+        "python3", "-m", GENERATE_MODULE,
+        "--instances", str(instances),
+        "--length", str(length),
+        "--output", str(out_path),
+    ]
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=1200)
+    except subprocess.TimeoutExpired:
+        return jsonify({"error": "Generation timed out"}), 500
+    except subprocess.CalledProcessError as exc:
+        return jsonify({"error": f"Generation failed: {exc.stderr or exc.stdout}"}), 500
+
+    size = out_path.stat().st_size if out_path.exists() else 0
+    return jsonify({
+        "ok": True,
+        "output": str(out_path),
+        "size_bytes": size,
+        "log": (result.stdout or "").splitlines()[-10:],
+    })
 
 
 @app.route("/api/retrain", methods=["POST", "OPTIONS"])

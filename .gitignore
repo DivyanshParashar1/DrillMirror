@@ -16,6 +16,7 @@ dist/
 # Large data artifacts (kept locally, not in repo)
 data/Real/
 data/synthetic/
+data/uploads/
 data/*.joblib
 
 # Research reference

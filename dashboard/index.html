@@ -3,191 +3,383 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Offshore Well Event Monitoring & Explanation</title>
+  <title>DrillMirror · Digital Twin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="glow"></div>
-  <header>
-    <div class="header-row">
-      <div>
-        <h1>Offshore Well Event Monitoring & Explanation</h1>
-        <p>
-          This dashboard helps managers understand unusual well behavior, why it matters,
-          and what parts of the system are most likely involved.
-        </p>
-      </div>
-      <div class="mode-toggle">
-        <button id="theme-toggle" title="Toggle theme">☾ Dark</button>
-      </div>
-    </div>
-  </header>
-
-  <nav class="topnav" aria-label="Section navigation">
-    <a href="#sec-events">Events</a>
-    <a href="#sec-test">Evaluator</a>
-    <a href="#sec-chat">Chatbot</a>
-    <a href="#sec-model">Model</a>
-    <a href="#sec-graph">Ontology Graph</a>
-    <a href="#sec-classes">Classes</a>
-    <a href="#sec-real">Real Data</a>
-    <a href="#sec-browser">Instances</a>
-    <a href="#sec-glossary">Glossary</a>
-    <span class="spacer"></span>
-    <span id="server-status" class="status-pill">
-      <span id="server-dot" class="status-dot wait"></span>
-      <span id="server-label">checking server…</span>
-    </span>
-  </nav>
-
-  <main>
-    <section id="sec-events" class="panel">
-      <h2>Undesirable Events (Plain Definitions)</h2>
-      <div id="events-list" class="events-list"></div>
-    </section>
-
-    <section id="sec-test" class="panel">
-      <h2>Test Input + Explanation</h2>
-      <div class="input-grid">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">DM</div>
         <div>
-          <h3>Instance Features JSON</h3>
-          <p class="muted">Paste the instance-level feature JSON (e.g., from <code>python -m drillmirror.data_pipeline.extract_instance_features</code>).</p>
-          <div class="input-actions">
-            <label class="muted">Load real file</label>
-            <select id="file-select"></select>
-            <button id="btn-load-file">Load</button>
+          <div class="brand-name">DrillMirror</div>
+          <div class="brand-sub">Digital Twin</div>
+        </div>
+      </div>
+
+      <nav class="side-nav" aria-label="Primary">
+        <a href="#" class="side-link active" data-view="overview">
+          <span class="icon">◇</span><span>Overview</span>
+        </a>
+        <a href="#" class="side-link" data-view="model">
+          <span class="icon">◈</span><span>Model</span>
+        </a>
+        <a href="#" class="side-link" data-view="evaluate">
+          <span class="icon">◉</span><span>Evaluate</span>
+        </a>
+        <a href="#" class="side-link" data-view="generate">
+          <span class="icon">✦</span><span>Generate Data</span>
+        </a>
+        <a href="#" class="side-link" data-view="ontology">
+          <span class="icon">◐</span><span>Ontology</span>
+        </a>
+        <a href="#" class="side-link" data-view="data">
+          <span class="icon">▤</span><span>Real Data</span>
+        </a>
+        <a href="#" class="side-link" data-view="events">
+          <span class="icon">▲</span><span>Events</span>
+        </a>
+        <a href="#" class="side-link" data-view="chat">
+          <span class="icon">◆</span><span>Chatbot</span>
+        </a>
+      </nav>
+
+      <div class="side-footer">
+        <div class="status-pill" title="Chatbot server">
+          <span id="server-dot" class="status-dot wait"></span>
+          <span id="server-label">checking…</span>
+        </div>
+        <button id="theme-toggle" class="ghost-btn" title="Toggle theme">☾ Dark</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <!-- OVERVIEW -->
+      <section class="view active" data-view="overview">
+        <header class="view-head">
+          <div>
+            <h1>Offshore Well Digital Twin</h1>
+            <p class="lead">Ontology-driven anomaly detection and event explanation for offshore oil wells.</p>
           </div>
-          <textarea id="input-json" rows="12" placeholder='{"P-PDG_mean": 123.4, "P-PDG_std": 5.6, ...}'></textarea>
-          <div class="input-actions">
-            <button id="btn-eval">Evaluate</button>
-            <span id="input-status" class="badge">waiting</span>
+        </header>
+
+        <div class="kpi-row">
+          <div class="kpi"><span class="kpi-label">Ontology Classes</span><span class="kpi-value" id="kpi-classes">—</span></div>
+          <div class="kpi"><span class="kpi-label">Object Properties</span><span class="kpi-value" id="kpi-obj">—</span></div>
+          <div class="kpi"><span class="kpi-label">Datatype Properties</span><span class="kpi-value" id="kpi-data">—</span></div>
+          <div class="kpi"><span class="kpi-label">Ontology Instances</span><span class="kpi-value" id="kpi-instances">—</span></div>
+          <div class="kpi accent"><span class="kpi-label">Model F1</span><span class="kpi-value" id="kpi-f1">—</span></div>
+          <div class="kpi accent"><span class="kpi-label">PR AUC</span><span class="kpi-value" id="kpi-pr">—</span></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2>Quick Actions</h2></div>
+            <div class="quick-actions">
+              <button class="primary" data-goto="evaluate">Evaluate an Instance →</button>
+              <button data-goto="generate">Generate Synthetic Data →</button>
+              <button data-goto="ontology">Explore Ontology Graph →</button>
+              <button data-goto="chat">Ask the Chatbot →</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>How It Works</h2></div>
+            <ol class="steps">
+              <li><strong>Ingest</strong> — parquet time series from the 3W dataset are summarized into instance-level features.</li>
+              <li><strong>Detect</strong> — an Isolation Forest scores each instance for anomaly likelihood.</li>
+              <li><strong>Explain</strong> — the ontology graph maps flagged sensors to equipment and candidate event types.</li>
+              <li><strong>Report</strong> — LLM-backed chatbot generates Manager and Engineer-facing summaries.</li>
+            </ol>
           </div>
         </div>
-        <div>
-          <h3>Model Output</h3>
-          <div class="output-box" id="model-output">No input evaluated.</div>
-          <h3>Top Contributors</h3>
-          <div id="contrib-list" class="list"></div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="sec-chat" class="panel">
-      <h2>Chatbot (Ontology-Aware)</h2>
-      <div class="chat">
-        <div class="chat-mode">
-          <label class="muted">Mode</label>
-          <div class="toggle">
-            <button id="mode-engineer" class="toggle-btn active">Engineer</button>
-            <button id="mode-manager" class="toggle-btn">Manager</button>
+      <!-- MODEL -->
+      <section class="view" data-view="model">
+        <header class="view-head">
+          <div>
+            <h1>Isolation Forest Model</h1>
+            <p class="lead">Anomaly detection performance on the real 3W dataset.</p>
+          </div>
+          <div class="head-actions">
+            <button id="btn-retrain" class="primary">Re-train Model</button>
+            <span id="retrain-status" class="chip idle">idle</span>
+          </div>
+        </header>
+
+        <div class="kpi-row">
+          <div class="kpi"><span class="kpi-label">Precision</span><span class="kpi-value" id="m-precision">—</span></div>
+          <div class="kpi"><span class="kpi-label">Recall</span><span class="kpi-value" id="m-recall">—</span></div>
+          <div class="kpi"><span class="kpi-label">F1 Score</span><span class="kpi-value" id="m-f1">—</span></div>
+          <div class="kpi"><span class="kpi-label">ROC AUC</span><span class="kpi-value" id="m-roc">—</span></div>
+          <div class="kpi"><span class="kpi-label">PR AUC</span><span class="kpi-value" id="m-pr">—</span></div>
+          <div class="kpi"><span class="kpi-label">Contamination</span><span class="kpi-value" id="m-contam">—</span></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2>Score Distribution</h2><span class="muted">Normal vs Anomaly</span></div>
+            <div class="chart-wrap"><canvas id="chart-hist"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Timeline</h2><span class="muted">First 200 instances</span></div>
+            <div class="chart-wrap"><canvas id="chart-timeline"></canvas></div>
           </div>
         </div>
-        <div id="chat-log" class="chat-log"></div>
-        <div class="chat-input">
-          <input id="chat-question" type="text" placeholder="Ask why the model flagged this instance..." />
-          <button id="chat-send">Ask</button>
+
+        <div class="card">
+          <div class="card-head">
+            <h2>Reports</h2>
+            <span class="muted">PDF export from server</span>
+          </div>
+          <div class="row-actions">
+            <button id="btn-report-manager">Manager Report</button>
+            <button id="btn-report-engineer">Engineer Report</button>
+          </div>
         </div>
-        <p class="muted">This chatbot uses the ontology graph + your evaluated input to explain likely causes.</p>
-      </div>
-    </section>
+      </section>
 
-    <section id="sec-model" class="panel">
-      <h2>Isolation Forest Results</h2>
-      <div class="input-actions">
-        <button id="btn-retrain">Re-train Model</button>
-        <span id="retrain-status" class="badge">idle</span>
-      </div>
-      <div class="input-actions">
-        <button id="btn-report-manager">Generate Report for Manager</button>
-        <button id="btn-report-engineer">Generate Report for Engineers</button>
-      </div>
-      <div class="kpi-grid">
-        <div class="kpi"><h3>Precision</h3><span id="m-precision">0</span></div>
-        <div class="kpi"><h3>Recall</h3><span id="m-recall">0</span></div>
-        <div class="kpi"><h3>F1 Score</h3><span id="m-f1">0</span></div>
-        <div class="kpi"><h3>ROC AUC</h3><span id="m-roc">0</span></div>
-        <div class="kpi"><h3>PR AUC</h3><span id="m-pr">0</span></div>
-        <div class="kpi"><h3>Contamination</h3><span id="m-contam">0</span></div>
-      </div>
-      <div class="charts">
-        <div class="chart-card">
-          <h3>Score Distribution</h3>
-          <canvas id="chart-hist"></canvas>
+      <!-- EVALUATE -->
+      <section class="view" data-view="evaluate">
+        <header class="view-head">
+          <div>
+            <h1>Evaluate Instance</h1>
+            <p class="lead">Score any well instance and see which sensors drove the result.</p>
+          </div>
+        </header>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head">
+              <h2>Input</h2>
+              <span class="muted">Choose one source</span>
+            </div>
+
+            <div class="tabs">
+              <button class="tab active" data-tab="paste">Paste JSON</button>
+              <button class="tab" data-tab="pick">Pick from Real</button>
+              <button class="tab" data-tab="upload">Upload Parquet</button>
+            </div>
+
+            <div class="tab-panel active" data-panel="paste">
+              <p class="muted">Instance-level features as JSON (e.g. from <code>drillmirror.data_pipeline.extract_instance_features</code>).</p>
+              <textarea id="input-json" rows="12" placeholder='{"P-PDG_mean": 123.4, "P-PDG_std": 5.6, ...}'></textarea>
+            </div>
+
+            <div class="tab-panel" data-panel="pick">
+              <p class="muted">Load a parquet from <code>data/Real/</code>.</p>
+              <div class="row-actions">
+                <select id="file-select"></select>
+                <button id="btn-load-file">Load</button>
+              </div>
+            </div>
+
+            <div class="tab-panel" data-panel="upload">
+              <p class="muted">Upload your own .parquet file. Features are extracted server-side.</p>
+              <div class="upload-drop" id="upload-drop">
+                <input type="file" id="upload-input" accept=".parquet" hidden />
+                <div class="upload-cta">
+                  <div class="upload-icon">⇪</div>
+                  <div><strong>Drop parquet here</strong> or <a href="#" id="upload-pick">browse</a></div>
+                  <div class="muted">.parquet only · sent to <code>/api/upload-parquet</code></div>
+                </div>
+              </div>
+              <div id="upload-info" class="muted" style="margin-top:8px"></div>
+            </div>
+
+            <div class="row-actions">
+              <button id="btn-eval" class="primary">Evaluate</button>
+              <span id="input-status" class="chip idle">waiting</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>Result</h2></div>
+            <div class="output-box" id="model-output">
+              <span class="muted">No input evaluated.</span>
+            </div>
+            <h3>Top Contributors</h3>
+            <div id="contrib-list" class="chip-list"></div>
+          </div>
         </div>
-        <div class="chart-card">
-          <h3>Timeline (First 200 Instances)</h3>
-          <canvas id="chart-timeline"></canvas>
+      </section>
+
+      <!-- GENERATE -->
+      <section class="view" data-view="generate">
+        <header class="view-head">
+          <div>
+            <h1>Generate Synthetic Data</h1>
+            <p class="lead">Produce 3W-like multivariate time series for development and testing.</p>
+          </div>
+        </header>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2>Parameters</h2></div>
+            <div class="form-grid">
+              <label>
+                <span>Instances</span>
+                <input id="gen-instances" type="number" min="1" max="2000" value="60" />
+                <small class="muted">Number of time series to generate (1–2000).</small>
+              </label>
+              <label>
+                <span>Length (seconds)</span>
+                <input id="gen-length" type="number" min="60" max="86400" value="3600" />
+                <small class="muted">Sampling is 1 Hz; length = number of rows per instance.</small>
+              </label>
+              <label>
+                <span>Output filename</span>
+                <input id="gen-filename" type="text" value="synthetic_3w_like.csv" />
+                <small class="muted">Written to <code>data/synthetic/</code>.</small>
+              </label>
+            </div>
+            <div class="row-actions">
+              <button id="btn-generate" class="primary">Generate</button>
+              <span id="gen-status" class="chip idle">idle</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>Output</h2></div>
+            <div id="gen-result" class="output-box">
+              <span class="muted">No dataset generated yet.</span>
+            </div>
+            <h3>Columns produced</h3>
+            <div class="chip-list">
+              <span class="chip">timestamp_s</span>
+              <span class="chip">instance_id</span>
+              <span class="chip">event_code</span>
+              <span class="chip">event_label</span>
+              <span class="chip">state</span>
+              <span class="chip">p_pdg</span>
+              <span class="chip">p_tpt</span>
+              <span class="chip">t_tpt</span>
+              <span class="chip">p_pck_up</span>
+              <span class="chip">t_pck_down</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="sec-graph" class="panel">
-      <div class="graph-head">
-        <h2>Ontology Graph</h2>
-        <div class="graph-controls">
-          <label>Zoom
-            <input id="graph-depth" type="range" min="1" max="4" value="2" />
-          </label>
-          <span id="graph-count" class="badge">0 nodes</span>
+      <!-- ONTOLOGY -->
+      <section class="view" data-view="ontology">
+        <header class="view-head">
+          <div>
+            <h1>Ontology Graph</h1>
+            <p class="lead">Equipment, sensors, variables, and event types from <code>oil_well_dt.ttl</code>.</p>
+          </div>
+          <div class="head-actions">
+            <label class="range-label">Zoom
+              <input id="graph-depth" type="range" min="1" max="4" value="2" />
+            </label>
+            <span id="graph-count" class="chip">0 nodes</span>
+          </div>
+        </header>
+
+        <div class="card no-pad">
+          <div id="graph"></div>
         </div>
-      </div>
-      <div id="graph"></div>
-    </section>
 
-    <section id="sec-classes" class="panel two-col">
-      <div>
-        <h2>Ontology Classes</h2>
-        <div id="class-list" class="list"></div>
-      </div>
-      <div>
-        <h2>Ontology Properties</h2>
-        <div id="prop-list" class="list"></div>
-      </div>
-    </section>
-
-    <section id="sec-real" class="panel">
-      <h2>Real Data Labels</h2>
-      <div class="charts">
-        <div class="chart-card">
-          <h3>Instance Count by Class</h3>
-          <canvas id="chart-class-counts"></canvas>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2>Classes</h2></div>
+            <div id="class-list" class="chip-list"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Properties</h2></div>
+            <div id="prop-list" class="chip-list"></div>
+          </div>
         </div>
-        <div class="chart-card">
-          <h3>State Distribution</h3>
-          <canvas id="chart-state-counts"></canvas>
+
+        <div class="card">
+          <div class="card-head"><h2>Glossary</h2></div>
+          <div id="ontology-glossary" class="glossary"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="sec-browser" class="panel">
-      <h2>Instances by Class</h2>
-      <div id="instance-map" class="map"></div>
-    </section>
+      <!-- REAL DATA -->
+      <section class="view" data-view="data">
+        <header class="view-head">
+          <div>
+            <h1>Real 3W Data</h1>
+            <p class="lead">Label distribution across the parquet corpus in <code>data/Real/</code>.</p>
+          </div>
+        </header>
 
-    <section class="panel">
-      <h2>Instance Browser</h2>
-      <div class="search">
-        <input id="search-input" type="text" placeholder="Search by instance or class" />
-        <span id="instance-count" class="badge">0 shown</span>
-      </div>
-      <table class="table">
-        <thead>
-          <tr><th>Instance</th><th>Class</th></tr>
-        </thead>
-        <tbody id="instance-table"></tbody>
-      </table>
-    </section>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2>Instances per Class</h2></div>
+            <div class="chart-wrap"><canvas id="chart-class-counts"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>State Distribution</h2></div>
+            <div class="chart-wrap"><canvas id="chart-state-counts"></canvas></div>
+          </div>
+        </div>
 
-    <section id="sec-glossary" class="panel">
-      <h2>Ontology Glossary</h2>
-      <div id="ontology-glossary" class="glossary"></div>
-    </section>
-  </main>
+        <div class="card">
+          <div class="card-head">
+            <h2>Instance Browser</h2>
+            <input id="search-input" type="text" placeholder="search instance or class…" class="inline-search" />
+            <span id="instance-count" class="chip">0 shown</span>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>Instance</th><th>Class</th></tr></thead>
+              <tbody id="instance-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    Source: <code>ontology/oil_well_dt.ttl</code> summarized into JSON at build time.
-  </footer>
+      <!-- EVENTS -->
+      <section class="view" data-view="events">
+        <header class="view-head">
+          <div>
+            <h1>Undesirable Events</h1>
+            <p class="lead">Plain-language descriptions of the eight event types the model targets.</p>
+          </div>
+        </header>
+        <div id="events-list" class="events-grid"></div>
+      </section>
 
+      <!-- CHATBOT -->
+      <section class="view" data-view="chat">
+        <header class="view-head">
+          <div>
+            <h1>Ontology-Aware Chatbot</h1>
+            <p class="lead">Ask why the model flagged an instance. Uses your latest evaluation as context.</p>
+          </div>
+          <div class="head-actions">
+            <div class="segmented">
+              <button id="mode-engineer" class="seg active">Engineer</button>
+              <button id="mode-manager" class="seg">Manager</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="card chat-card">
+          <div id="chat-log" class="chat-log">
+            <div class="chat-empty muted">Ask a question to get started. Try:
+              <div class="suggestions">
+                <button class="chip clickable" data-q="Why is the anomaly score high?">Why is the anomaly score high?</button>
+                <button class="chip clickable" data-q="Which sensor is most anomalous?">Which sensor is most anomalous?</button>
+                <button class="chip clickable" data-q="Which event pattern does this match?">Which event pattern does this match?</button>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <input id="chat-question" type="text" placeholder="Ask a question about the last evaluated instance…" />
+            <button id="chat-send" class="primary">Send</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
